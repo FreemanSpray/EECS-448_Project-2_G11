@@ -4,6 +4,14 @@ let context;
 function draw(){
     context.clearRect(0,0,canvas.width,canvas.length);
 
+    context.font = "50px Times New Roman";
+    let gradient = context.createLinearGradient(0,0,canvas.width, 0);
+    gradient.addColorStop("0", "black");
+    gradient.addColorStop("1", "red");
+    context.fillStyle = gradient;
+    context.fillText("BattleShip", 650, 50)
+    context.stroke();
+
     context.beginPath();
     context.lineWidth = 2;
     context.strokeStyle = "green";
@@ -18,11 +26,13 @@ function draw(){
     let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     for(let x=0; x<10;x++){
         context.font = "30px Verdana";
+        context.fillStyle = "black";
         context.fillText(letters[x], 102.5 + 55*x, 70);
         context.fillText(letters[x], 902.5 + 55*x, 70);
     }
     for(let x=1; x<=9; x++){
         context.font = "30px Verdana";
+        context.fillStyle = "black";
         context.fillText(x, 55, 105.5 + (x-1)*61.1);
         context.fillText(x, 1425, 105.5 + (x-1)*61.1);
     }
