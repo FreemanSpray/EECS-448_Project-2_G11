@@ -1,7 +1,7 @@
 let canvas;
 let context;
 
-function draw(){
+function drawTemplate(){
     context.clearRect(0,0,canvas.width,canvas.length);
 
     context.font = "50px Times New Roman";
@@ -71,10 +71,17 @@ function draw(){
     
 }
 
+function drawStartUI(){
+    //context.font = "30px Times New Roman"
+    //context.fillStyle = "Black"
+    //context.fillText("Welcome to BattleShip. Choose how many ships you will be playing with!", 650,100, [200])
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.querySelector("#myCanvas");
     if (canvas != null){
         context = canvas.getContext("2d");
     } 
-    draw();
+    drawTemplate();
+    drawStartUI();
   })
