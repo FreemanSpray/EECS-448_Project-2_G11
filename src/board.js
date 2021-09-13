@@ -89,6 +89,13 @@ function drawTemplate(){
     
 }
 
+function drawHMResult(x,y){
+    // Check for ship in position, if theres a ship, draw red, if not, draw blue?
+    context.fillStyle = "red";
+    context.fillRect(x*54.9+83, y*61.1+85, 40,40);
+}
+
+
 function drawStartUI(){
     context.font = "30px Times New Roman"
     context.fillStyle = "Black"
