@@ -17,6 +17,12 @@ function drawTemplate(){
     context.fillStyle = gradient;
     context.fillText("BattleShip", 650, 50)
     context.stroke();
+    context.beginPath();
+    context.lineWidth = 1.5;
+    context.strokeStyle = gradient;
+    context.moveTo(650, 52);
+    context.lineTo(857, 52);
+    context.stroke();
 
     //Draw 2 game boards
     context.beginPath();
@@ -46,7 +52,7 @@ function drawTemplate(){
         context.fillText(x, 55, 105.5 + (x-1)*61.1);
         context.fillText(x, 1425, 105.5 + (x-1)*61.1);
     }
-    
+
     //draw the columns/rows in the boards
     for (let x=0; x<9; x++){
         context.beginPath();
@@ -84,9 +90,11 @@ function drawTemplate(){
 }
 
 function drawStartUI(){
-    //context.font = "30px Times New Roman"
-    //context.fillStyle = "Black"
-    //context.fillText("Welcome to BattleShip. Choose how many ships you will be playing with!", 650,100, [200])
+    context.font = "30px Times New Roman"
+    context.fillStyle = "Black"
+    context.textAlign = 'center'
+    context.fillText("Welcome to BattleShip!", 750,100, [200])
+    context.fillText("How many ships will you be playing with?", 750, 130, [220])
 }
 
 document.addEventListener("DOMContentLoaded", () => {
