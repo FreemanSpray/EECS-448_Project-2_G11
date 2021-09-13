@@ -9,7 +9,8 @@ document.addEventListener("click", e => {
   const[b]=[e.y].map(roundMeredvert);
   if(i>=0 && i<10 && j>=0 && j<9)
   {
-        alert("board 0");
+        console.log(e.x,e.y)
+        drawHMResult(i,j)
   }
   
   if(a>=0 && a<10 && b>=0 && b<9)
