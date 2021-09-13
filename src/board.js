@@ -1,9 +1,15 @@
 let canvas;
 let context;
 
+/*
+* @pre none
+* @param none
+* @post draws the base template for the game
+*/
 function drawTemplate(){
     context.clearRect(0,0,canvas.width,canvas.length);
 
+    //draw header
     context.font = "50px Times New Roman";
     let gradient = context.createLinearGradient(0,0,canvas.width, 0);
     gradient.addColorStop("0", "black");
@@ -12,6 +18,7 @@ function drawTemplate(){
     context.fillText("BattleShip", 650, 50)
     context.stroke();
 
+    //Draw 2 game boards
     context.beginPath();
     context.lineWidth = 2;
     context.strokeStyle = "green";
@@ -23,6 +30,7 @@ function drawTemplate(){
     context.rect(875,75,550,550);
     context.stroke();
 
+    //label columns for the boards
     let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     for(let x=0; x<10;x++){
         context.font = "30px Verdana";
@@ -30,12 +38,16 @@ function drawTemplate(){
         context.fillText(letters[x], 102.5 + 55*x, 70);
         context.fillText(letters[x], 902.5 + 55*x, 70);
     }
+
+    //label rows for the boards
     for(let x=1; x<=9; x++){
         context.font = "30px Verdana";
         context.fillStyle = "black";
         context.fillText(x, 55, 105.5 + (x-1)*61.1);
         context.fillText(x, 1425, 105.5 + (x-1)*61.1);
     }
+    
+    //draw the columns/rows in the boards
     for (let x=0; x<9; x++){
         context.beginPath();
         context.lineWidth = 1;
