@@ -102,28 +102,77 @@ function drawHMResult(x,y){
 */
 function drawStartUI(){
     //draws sub header
-    context.font = "30px Times New Roman"
-    context.fillStyle = "Black"
-    context.textAlign = 'center'
-    context.fillText("Welcome to BattleShip!", 750,100, [200])
-    context.fillText("Choose the number of ships to place", 750, 150, [220])
+    context.font = "30px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = 'center';
+    context.fillText("Welcome to BattleShip!", 750,100, [200]);
+    context.fillText("Choose the number of ships to place", 750, 150, [220]);
 
     //draws the buttons for ship # selection
     for(let x = 1; x<=6; x++){
-        context.beginPath()
+        context.beginPath();
         context.lineWidth = 2;
-        context.strokeStyle = "Grey"
-        context.rect(650, 150+50*x, 200, 40)
-        context.stroke()
-        context.font = "20px Times New Roman"
-        context.fillStyle = "Black"
-        context.textAlign = "Center"
+        context.strokeStyle = "Grey";
+        context.rect(650, 150+50*x, 200, 40);
+        context.stroke();
+        context.font = "20px Times New Roman";
+        context.fillStyle = "Black";
+        context.textAlign = "center";
         if (x == 1){
-            context.fillText(x + " Battleship", 750, 175+50*x)
+            context.fillText(x + " Battleship", 750, 175+50*x);
         } else {
-            context.fillText(x + " Battleships", 750, 175+50*x)
+            context.fillText(x + " Battleships", 750, 175+50*x);
         }
     }
+}
+
+/*
+* @pre none
+* @param none
+* @post draws the text that will display while the players are placing their ships
+*/
+function drawPlacingShipsText(){
+    drawTemplate();
+    context.font = "30px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = 'center';
+    context.fillText("Place your ships!", 750,100, [200]);
+}
+
+/*
+* @pre none
+* @param none
+* @post draws the button that will indicate a given player is done with their turn
+*/
+function drawDoneTurnButton(){
+    drawTemplate();
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 300, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Turn Done", 750, 325);
+}
+
+/*
+* @pre none
+* @param none
+* @post draws the button that indicates a given player is about to start their turn
+*/
+function drawStartTurnButton(){
+    drawTemplate();
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 300, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Start Turn", 750, 325);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
