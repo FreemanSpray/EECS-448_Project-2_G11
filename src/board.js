@@ -95,13 +95,35 @@ function drawHMResult(x,y){
     context.fillRect(x*54.9+83, y*61.1+85, 40,40);
 }
 
-
+/*
+* @pre none
+* @param none
+* @post draws the Start selection UI elements for the game
+*/
 function drawStartUI(){
+    //draws sub header
     context.font = "30px Times New Roman"
     context.fillStyle = "Black"
     context.textAlign = 'center'
     context.fillText("Welcome to BattleShip!", 750,100, [200])
-    context.fillText("How many ships will you be playing with?", 750, 130, [220])
+    context.fillText("Choose the number of ships to place", 750, 150, [220])
+
+    //draws the buttons for ship # selection
+    for(let x = 1; x<=6; x++){
+        context.beginPath()
+        context.lineWidth = 2;
+        context.strokeStyle = "Grey"
+        context.rect(650, 150+50*x, 200, 40)
+        context.stroke()
+        context.font = "20px Times New Roman"
+        context.fillStyle = "Black"
+        context.textAlign = "Center"
+        if (x == 1){
+            context.fillText(x + " Battleship", 750, 175+50*x)
+        } else {
+            context.fillText(x + " Battleships", 750, 175+50*x)
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
