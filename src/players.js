@@ -1,5 +1,5 @@
 class Player {
-    constructer(board, ID){
+    constructor(board, ID){
         this.board = board;
         this.player = ID;
     }
