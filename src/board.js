@@ -149,7 +149,12 @@ function drawPlacingShipsText(){
     context.font = "30px Times New Roman";
     context.fillStyle = "Black";
     context.textAlign = 'center';
-    context.fillText("Place your ships!", 750,100, [200]);
+    if (gameLogic.player1Turn == true){
+        context.fillText("Player 1 place your ships!", 750,100, [200]);
+    } else {
+        context.fillText("Player 2 place your ships!", 750,100, [200]);
+    }
+    
 }
 
 /*
@@ -167,7 +172,12 @@ function drawDoneTurnButton(){
     context.font = "20px Times New Roman";
     context.fillStyle = "Black";
     context.textAlign = "center";
-    context.fillText("Turn Done", 750, 325);
+    if (gameLogic.player1Turn == true){
+        context.fillText("Player 1 Turn Done", 750, 325);
+    } else {
+        context.fillText("Player 2 Turn Done", 750, 325);
+    }
+    
 }
 
 /*
@@ -185,7 +195,12 @@ function drawStartTurnButton(){
     context.font = "20px Times New Roman";
     context.fillStyle = "Black";
     context.textAlign = "center";
-    context.fillText("Start Turn", 750, 325);
+    if (gameLogic.player1Turn == true){
+        context.fillText("P1 Start Turn", 750, 325);
+    } else {
+        context.fillText("P2 Start Turn", 750, 325);
+    }
+    
 }
 
 document.addEventListener("DOMContentLoaded", () => {
