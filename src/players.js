@@ -15,7 +15,7 @@ function fire_missile(locations,player)
     if(player.board["grid"][locations[0]][locations[1]].filled == true)
     {
         player.board["grid"][locations[0]][locations[1]].hit = true
-        drawHMResult(locations[0], locations[1])
+        drawHitResult(locations[0], locations[1])
         console.log("HIT")
         window.alert("Hit")
 
