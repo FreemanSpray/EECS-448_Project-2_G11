@@ -10,12 +10,19 @@ document.addEventListener("click", e => {
   if(i>=0 && i<10 && j>=0 && j<9)
   {
         console.log(e.x,e.y)
-        drawHMResult(i,j)
+        //drawHMResult(j,i)
+        console.log(j,i)
+        
+        ship_front_tail.push([j,i])//push coordinates of click to an array that will hold the front and tail of a ship? then one array size is 2, place the ship?
+        //fire_missile([j,i],player1)
   }
   
   if(a>=0 && a<10 && b>=0 && b<9)
   {
-        alert("board 1");
+        console.log(b,a)
+        //drawHMResult(b,a)
+        fire_missile([b,a], player1)
+
   }
         
 })
