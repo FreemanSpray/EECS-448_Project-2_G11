@@ -15,24 +15,24 @@ document.addEventListener("click", e => {
                   {
                         gameLogic.numShips=1;
                   }
-                  if(e.y>=260 && e.y<=300)
+                  else if(e.y>=260 && e.y<=300)
                   {
                         gameLogic.numShips=2;
 
                   }
-                  if(e.y>=310 && e.y<=350)
+                  else if(e.y>=310 && e.y<=350)
                   {
                         gameLogic.numShips=3;
                   }
-                  if(e.y>=360 && e.y<=400)
+                  else if(e.y>=360 && e.y<=400)
                   {
                         gameLogic.numShips=4;
                   }
-                  if(e.y>=410 && e.y<=450)
+                  else if(e.y>=410 && e.y<=450)
                   {
                         gameLogic.numShips=5;
                   }
-                  if(e.y>=460 && e.y<=500)
+                  else if(e.y>=460 && e.y<=500)
                   {
                         gameLogic.numShips=6;
 
@@ -42,23 +42,22 @@ document.addEventListener("click", e => {
             gameLogic.placing == true;
       }
 
-      if (GameLogic.placing == true){
+      else if (gameLogic.placing == true){
             if(i>=0 && i<10 && j>=0 && j<9){
-                  // for each ship needed to place, allow player to place, and then change to player 2 to allow placement
-                  console.log(e.x,e.y)
-                  //drawHMResult(j,i)
-                  console.log(j,i)
-                  ship_front_tail.push([j,i])//push coordinates of click to an array that will hold the front and tail of a ship? then one array size is 2, place the ship?
-                  //fire_missile([j,i],player1)
+                  if (gameLogic.player1Turn == true){
+                        // peter place a ship on the specific players board after validating that the ship placement is valid
+                  }
             }
       }
-      else if (GameLogic.firing == true){
+      else if (gameLogic.firing == true){
             if(a>=0 && a<10 && b>=0 && b<9)
             {
-                  console.log(b,a)
-                  //drawHMResult(b,a)
-                  fire_missile([b,a], player1)
-
+                  if (gameLogic.player1Turn == true){
+                        fire_missile([b,a], player2)
+                  }
+                  else{
+                        fire_missile([b,a], player1)
+                  }
             }
       }         
 })
