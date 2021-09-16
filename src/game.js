@@ -7,7 +7,7 @@ class GameLogic{
         this.numShips = 1;
     }
 }
+let gameLogic = new GameLogic();
 document.addEventListener("DOMContentLoaded", () => {
-    let gameLogic = new GameLogic();
     setTimeout(() => {  alert("Pick how many ships you'd like to play with!");   }, 300);
 })

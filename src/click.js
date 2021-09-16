@@ -8,7 +8,7 @@ document.addEventListener("click", e => {
       const[a]=[e.x].map(roundMeredhorz);
       const[b]=[e.y].map(roundMeredvert); 
 
-      if (GameLogic.pickNumShips == true){
+      if (gameLogic.pickNumShips == true){
             if(e.x>=660 && e.x<=860)
             {
                   if(e.y>=210 && e.y<=250)
