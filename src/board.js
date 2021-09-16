@@ -88,11 +88,24 @@ function drawTemplate(){
     }
     
 }
-
+/*
+* @pre none
+* @param x coordinate and y coordinate of the cell selected to fire at
+* @post draws a red box at the coordinates
+*/
 function drawHMResult(x,y){
     // Check for ship in position, if theres a ship, draw red, if not, draw blue?
     context.fillStyle = "red";
-    context.fillRect(x*54.9+83, y*61.1+85, 40,40);
+    context.fillRect(y*54.9+883, x*61.1+85, 40,40);
+}
+/*
+* @pre none
+* @param x coordinate and y coordinate of the cell selected to fire at
+* @post draws a blue box at the coordinates
+*/
+function drawMissResult(x,y){
+    context.fillStyle = "blue";
+    context.fillRect(y*54.9+883, x*61.1+85, 40,40);
 }
 
 /*
