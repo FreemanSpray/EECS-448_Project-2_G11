@@ -1,7 +1,33 @@
+/*
+* @pre 
+* @param x represents x coordinate passed in from coordinate pair
+* @post Converts x coordinate of screen to x value of cell on green board.
+*/
 function roundMegreenhorz(x){ return Math.floor(((x-85)/55))}
+/*
+* @pre 
+* @param y represents y coordinate passed in from coordinate pair
+* @post Converts y coordinate of screen to y value of cell on green board.
+*/
 function roundMegreenvert(y){return Math.floor(((y-85)/61.1))}
+/*
+* @pre 
+* @param x represents x coordinate passed in from coordinate pair
+* @post Converts x coordinate of screen to x value of cell on red board.
+*/
 function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
+/*
+* @pre 
+* @param y represents y coordinate passed in from coordinate pair
+* @post Converts y coordinate of screen to y value of cell on red board.
+*/
 function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
+
+/*
+* @pre User clicks on screen
+* @param e represents x,y coordiante pair for where user clicked on screen.
+* @post Performs variety of tasks depending on where user clicked 
+*/
 document.addEventListener("click", e => {
       const [i] = [e.x].map(roundMegreenhorz);
       const [j] = [e.y].map(roundMegreenvert);
