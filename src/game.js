@@ -10,4 +10,7 @@ class GameLogic{
 let gameLogic = new GameLogic();
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {  alert("Pick how many ships you'd like to play with!");   }, 300);
+//     for(var f = 2; f <= gameLogic.numShips; f++){
+//         alert('Pick your ${f} length ship.')
+//   }
 })
