@@ -6,15 +6,22 @@ let context;
 * @param none
 * @post draws the base template for the game
 */
-function drawTemplate(){
-    context.clearRect(0,0,canvas.width,canvas.length);
+function clearTemplate(){
+    context.beginPath();
+    context.fillStyle = "rgba(255, 255, 255)";
+    context.fillRect(0, 0, canvas.width, canvas.height);    
+    context.stroke();
+    console.log("what up");
+}
 
+function drawTemplate(){
     //draw header
     context.font = "50px Times New Roman";
     let gradient = context.createLinearGradient(0,0,canvas.width, 0);
     gradient.addColorStop("0", "black");
     gradient.addColorStop("1", "red");
     context.fillStyle = gradient;
+    context.textAlign = "left"
     context.fillText("BattleShip", 650, 50)
     context.stroke();
     context.beginPath();
@@ -41,6 +48,7 @@ function drawTemplate(){
     for(let x=0; x<10;x++){
         context.font = "30px Verdana";
         context.fillStyle = "black";
+        context.textAlign = "left";
         context.fillText(letters[x], 102.5 + 55*x, 70);
         context.fillText(letters[x], 902.5 + 55*x, 70);
     }
@@ -49,8 +57,9 @@ function drawTemplate(){
     for(let x=1; x<=9; x++){
         context.font = "30px Verdana";
         context.fillStyle = "black";
+        context.textAlign = "left";
         context.fillText(x, 55, 105.5 + (x-1)*61.1);
-        context.fillText(x, 1425, 105.5 + (x-1)*61.1);
+        context.fillText(x, 1426, 105.5 + (x-1)*61.1);
     }
 
     //draw the columns/rows in the boards
