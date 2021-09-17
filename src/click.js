@@ -74,12 +74,12 @@ function user_length_ship([x,y],[m,n],distance)
 
 };
 let shiplength=1;
-let shipplaced=false;
-function ship_placement_interface(n,shipplaced)
+let shipplaced=true;
+function ship_placement_interface(n)
 {
-
             alert("Place your length " + n + " ship");
-            shiplength=n;
+            shiplength=n;  
+      
             
 }
 
@@ -137,10 +137,30 @@ document.addEventListener("click", e => {
                         console.log(j,i)
                         if(ship_front_tail.length == 2)
                         {
-                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength)==true)
+                              if(shiplength==1)
                               {
-                                    //shipplaced=true;
-                                    shiplength=shiplength+1;                           
+                                    if(([ship_front_tail[0][0],ship_front_tail[0][1]]==[ship_front_tail[1][0],ship_front_tail[1][1]]))
+                                    {
+                                          shiplength=shiplength+1;
+                                          place_ship(ship_front_tail[0], ship_front_tail[1], player1)
+                                          number_of_plyr1_placed_ships.push(1)
+                                          ship_front_tail.pop()
+                                          ship_front_tail.pop()
+                                          if(shiplength<=gameLogic.numShips)
+                                          {
+                                                ship_placement_interface(shiplength,shipplaced);
+                                          }
+                                    }
+                                    else
+                                    {
+                                          alert("Ship has incorrect length");
+                                          ship_placement_interface(shiplength,shipplaced);
+                                    }
+                                    
+                              }
+                              else if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
+                              {
+                                    shiplength=shiplength+1;
                                     place_ship(ship_front_tail[0], ship_front_tail[1], player1)
                                     number_of_plyr1_placed_ships.push(1)
                                     ship_front_tail.pop()
@@ -152,7 +172,8 @@ document.addEventListener("click", e => {
                               }
                               else
                               {
-                                    alert("Wrong ship");
+                                    alert("Ship has incorrect length");
+                                    ship_placement_interface(shiplength,shipplaced);
                               }
                         }
                         if(number_of_plyr1_placed_ships.length == gameLogic.numShips)
