@@ -5,6 +5,10 @@ class Ship {
         this.size = locations.length
     }
 }
+// will hold the placed ship objects of player 1. the index[0] will be the ship of size 1, the index[1] will be the ship of size 2 and so on..
+let all_player1_ships = []
+// will hold the placed ship objects of player 2. the index[0] will be the ship of size 1, the index[1] will be the ship of size 2 and so on..
+let all_player2_ships = []
 let number_of_plyr1_placed_ships = []
 let number_of_plyr2_placed_ships = []
 let ship_front_tail = []
