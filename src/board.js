@@ -203,6 +203,54 @@ function drawStartTurnButton(){
     
 }
 
+/*
+* @pre none
+* @param none
+* @post draws the ships of a given player when it is their turn
+*/
+function drawPlayersShipsDuringTurn(){
+    let gamePiecePosistions = new Array(9);
+    let playerCells;
+
+    for(let y=0; y < 9; y++){
+        gamePiecePosistions[y] = new Array(10);
+        for(let x=0; x < 10; x++){
+            gamePiecePosistions[y][x] = [85.5 + y*61.1, 82.5 + x*55];
+        }
+    }
+    
+    if(gameLogic.player1Turn == true){
+        playerCells = get_ship_cells(player1);
+    } else if (gameLogic.player1Turn == false) {
+        playerCells = get_ship_cells(player2);
+    }
+
+    console.log(playerCells.length);
+    for(let y = 0; y < 9; y++){
+        for(let x =0; x < 10; x++){
+            for(let z =0; z < playerCells.length; z++){
+                if( equals(playerCells[z],[y,x]) ){
+                    context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
+                }
+            }
+        }
+    }       
+}
+
+/*
+* @pre none
+* @param Any given 2 arrays
+* @post Returns true if the arrays are equal
+*/
+function equals(array1, array2){
+    for(let x=0; x<array1.length; x++){
+      if(array1[x] != array2[x]){
+        return false;
+      }
+    }
+    return true;
+  }
+
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.querySelector("#myCanvas");
     if (canvas != null){
