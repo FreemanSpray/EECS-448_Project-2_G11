@@ -5,6 +5,8 @@ class Ship {
         this.size = locations.length
     }
 }
+let number_of_plyr1_placed_ships = []
+let number_of_plyr2_placed_ships = []
 let ship_front_tail = []
 /*
 * @pre none
@@ -195,5 +197,5 @@ function verify_cordinates(ship_size, cord1, cord2, player)
 }
 
 //used to test if locations worked
-place_ship([4,3],[4,1], player1)
-place_ship([1,2],[3,2], player1)
+//place_ship([4,3],[4,1], player1)
+//place_ship([1,2],[3,2], player1)
