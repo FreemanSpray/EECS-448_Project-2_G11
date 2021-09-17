@@ -9,9 +9,22 @@ class Ship {
 let all_player1_ships = []
 // will hold the placed ship objects of player 2. the index[0] will be the ship of size 1, the index[1] will be the ship of size 2 and so on..
 let all_player2_ships = []
-let number_of_plyr1_placed_ships = []
-let number_of_plyr2_placed_ships = []
+//number of shipd placed by player 1
+let number_of_plyr1_placed_ships = 0
+//number of ships placed by player 2
+let number_of_plyr2_placed_ships = 0
+//an array that holds the potential front and tail values of a ship
 let ship_front_tail = []
+
+/*
+* @pre none
+* @param current player
+* @post will set a ships value in the all player ships array to sunk
+*/
+function sink_ships(player)
+{
+    
+}
 /*
 * @pre none
 * @param current player
@@ -74,49 +87,7 @@ function get_miss_cells(player)
     }
     return cells
 }
-/*
-* @pre none
-* @param location of where the ship needs to be placed, the player that is placing the ship
-* @post updates the players grid to fill the cells the ship will take up
-* @TODO still need to verify if two ships have on or more of the same coordinates
-*/
-/*
-function place_ship(locations, player)
-{
-    
-    //validate coordinates and add to a players grid of ships
-    if(locations.length < 1 || locations.length > 6)
-    {
-        throw 'ship is size is not valid';
-    }
-    //check is ship is size of 1x1
-    if(locations.length == 1)
-    {
-        player.board["grid"][locations[0][0]][locations[0][1]].filled = true
-    }
-    //check if ship is horizontal
-    else if(locations[0][0] == locations[1][0] )
-    {
-        let column = locations[0][0]
-        for(let i = 0; i < locations.length; i++)
-        {
-            player.board["grid"][column][locations[i][1]].filled = true;
-        }
-    }
-    //check if ship is vertical
-    else if(locations[0][1] == locations[1][1])
-    {
-        let row = locations[0][1]
-        for(let i = 0; i < locations.length; i++)
-        {
-            player.board["grid"][locations[i][0]][row].filled = true;
-        }
-    }
-    //if coordinates do not have any values in common then ship is diagonal or in nonconnecting cells
-    else{
-        throw 'Ship can not be placed diagonally or in nonconnected cells'
-    }
-}*/
+
 /*
 * @pre none
 * @param front coordinate of ship, last coordinate of ship
@@ -158,7 +129,7 @@ function place_ship(cord1, cord2, player)
             player.board["grid"][ship[i][0]][row].filled = true;
         }
     }
-    //if coordinates do not have any values in common then ship is diagonal or in nonconnecting cells
+    //if coordinates do not have any values in common then ship is diagonal
     else{
         throw 'Ship can not be placed diagonally or in nonconnected cells'
     }
@@ -166,7 +137,7 @@ function place_ship(cord1, cord2, player)
 /*
 * @pre none
 * @param front coordinate of ship, last coordinate of ship
-* @post returns an array that covers all value of a ship
+* @post returns an array that gives all coordinates covered by a ship
 */
 function get_all_ship_cells(cord1, cord2) {
     const [row_one, col_one] = cord1
@@ -186,7 +157,11 @@ function get_all_ship_cells(cord1, cord2) {
         })
     }
 }
-
+/*
+* @pre none
+* @param size of a potential ship, coordinate1/ front of ship, coordinite2 / tail of ship, and current player
+* @post verifies is a ships potential coorinites will work. (determines if a ship can be placed in cells). If problem is triggered, it throws errors
+*/
 function verify_cordinates(ship_size, cord1, cord2, player)
 {
     //verify the size of the
@@ -241,7 +216,3 @@ function verify_cordinates(ship_size, cord1, cord2, player)
             throw 'ship would overlap with another'
     }
 }
-
-//used to test if locations worked
-//place_ship([4,3],[4,1], player1)
-//place_ship([1,2],[3,2], player1)
