@@ -28,6 +28,48 @@ function get_ship_cells(player)
     }
     return cells
 }
+
+/*
+* @pre none
+* @param current player
+* @post iterates through a players grid and finds what cells of a players grid are hit, retruns an array of all the hit values
+*/
+function get_hit_cells(player)
+{
+    let cells =[]
+    for(let i = 0; i < 9; i++)
+    {
+        for(let j = 0; j < 10; j++)
+        {
+            if(player.board["grid"][i][j].hit == true)
+            {
+                cells.push([i,j])
+            }
+        }
+    }
+    return cells
+}
+
+/*
+* @pre none
+* @param current player
+* @post iterates through a players grid and finds what cells of a players grid are missed, retruns an array of all the missed values
+*/
+function get_miss_cells(player)
+{
+    let cells =[]
+    for(let i = 0; i < 9; i++)
+    {
+        for(let j = 0; j < 10; j++)
+        {
+            if(player.board["grid"][i][j].miss == true)
+            {
+                cells.push([i,j])
+            }
+        }
+    }
+    return cells
+}
 /*
 * @pre none
 * @param location of where the ship needs to be placed, the player that is placing the ship

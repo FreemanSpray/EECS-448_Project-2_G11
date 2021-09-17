@@ -225,11 +225,54 @@ function drawPlayersShipsDuringTurn(){
         playerCells = get_ship_cells(player2);
     }
 
-    console.log(playerCells.length);
     for(let y = 0; y < 9; y++){
         for(let x =0; x < 10; x++){
             for(let z =0; z < playerCells.length; z++){
                 if( equals(playerCells[z],[y,x]) ){
+                    context.fillStyle = "black";
+                    context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
+                }
+            }
+        }
+    }       
+}
+
+/*
+* @pre none
+* @param none
+* @post draws the hits and misses of a given player when it is their turn
+*/
+function drawHitsAndMissesDuringTurn(){
+    let gamePiecePosistions = new Array(9);
+    let hitCells;
+    let missCells;
+
+    for(let y=0; y < 9; y++){
+        gamePiecePosistions[y] = new Array(10);
+        for(let x=0; x < 10; x++){
+            gamePiecePosistions[y][x] = [85.5 + y*61.1, 882.5 + x*55];
+        }
+    }
+    
+    if(gameLogic.player1Turn == true){
+        hitCells = get_hit_cells(player1);
+        missCells = get_miss_cells(player1);
+    } else if (gameLogic.player1Turn == false) {
+        hitCells = get_hit_cells(player2);
+        missCells = get_miss_cells(player2);
+    }
+
+    for(let y = 0; y < 9; y++){
+        for(let x =0; x < 10; x++){
+            for(let z =0; z < hitCells.length; z++){
+                if( equals(hitCells[z],[y,x]) ){
+                    context.fillStyle = "green";
+                    context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
+                }
+            }
+            for(let z =0; z < missCells.length; z++){
+                if( equals(missCells[z],[y,x]) ){
+                    context.fillStyle = "red";
                     context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
                 }
             }
