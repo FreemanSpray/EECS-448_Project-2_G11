@@ -28,6 +28,22 @@ function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
 * @param e represents x,y coordiante pair for where user clicked on screen.
 * @post Performs variety of tasks depending on where user clicked 
 */
+function user_length_ship([x,y],[m,n],distance)
+{
+      if(Math.abs(x-m)==distance||Math.abs(y-n)==distance)
+      {
+            return true;
+      }
+      else
+      {
+            return false;
+      }
+
+
+};
+
+let shiplength=0;
+
 document.addEventListener("click", e => {
       const [i] = [e.x].map(roundMegreenhorz);
       const [j] = [e.y].map(roundMegreenvert);
@@ -39,6 +55,7 @@ document.addEventListener("click", e => {
                   if(e.y>=210 && e.y<=250)
                   {
                         gameLogic.numShips=1;
+
                   }
                   else if(e.y>=260 && e.y<=300)
                   {
@@ -62,24 +79,39 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
+                  alert("Place your length 1 ship");
                   gameLogic.pickNumShips = false;
                   gameLogic.placing = true;
-                  alert('Place your 1 length ship.')
+                 
             }
             
       }
       if (gameLogic.placing == true){
             if(i>=0 && i<10 && j>=0 && j<9){
                   if (gameLogic.player1Turn == true){
+                        if(gameLogic.numShips==1)
+                        {
+                              shiplength=1;
+
+                        }
+
+
                         // peter place a ship on the specific players board after validating that the ship placement is valid
                         ship_front_tail.push([j,i])
                         console.log(j,i)
-                        if(ship_front_tail.length == 2 )
+                        if(ship_front_tail.length == 2)
                         {
-                              place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                              number_of_plyr1_placed_ships.push(1)
-                              ship_front_tail.pop()
-                              ship_front_tail.pop()
+                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength)==true)                             {
+
+                                    place_ship(ship_front_tail[0], ship_front_tail[1], player1)
+                                    number_of_plyr1_placed_ships.push(1)
+                                    ship_front_tail.pop()
+                                    ship_front_tail.pop()
+                              }
+                              else
+                              {
+                                    alert("Wrong ship");
+                              }
                         }
                         if(number_of_plyr1_placed_ships.length == gameLogic.numShips)
                         {
