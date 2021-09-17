@@ -153,7 +153,7 @@ document.addEventListener("click", e => {
                                                 let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                                 all_player1_ships.push(ship)
                                                 shiplength=shiplength+1;
-                                                number_of_plyr1_placed_ships.push(1)
+                                                number_of_plyr1_placed_ships += 1
                                                 shipplaced = true
                                                 
                                           } 
@@ -173,7 +173,7 @@ document.addEventListener("click", e => {
                                                       let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                                       all_player1_ships.push(ship)
                                                       shiplength=shiplength+1;
-                                                      number_of_plyr1_placed_ships.push(1)
+                                                      number_of_plyr1_placed_ships += 1
                                                       shipplaced = true
                                                       
                                                 } 
@@ -208,7 +208,7 @@ document.addEventListener("click", e => {
                                           let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                           all_player1_ships.push(ship)
                                           shiplength=shiplength+1;
-                                          number_of_plyr1_placed_ships.push(1)
+                                          number_of_plyr1_placed_ships += 1
                                           shipplaced = true
                                           
                                     } 
@@ -228,7 +228,7 @@ document.addEventListener("click", e => {
                                                 let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                                 all_player1_ships.push(ship)
                                                 shiplength=shiplength+1;
-                                                number_of_plyr1_placed_ships.push(1)
+                                                number_of_plyr1_placed_ships += 1
                                                 shipplaced = true
                                                 
                                           } 
@@ -254,12 +254,12 @@ document.addEventListener("click", e => {
                                     ship_placement_interface(shiplength,shipplaced);
                               }
                         }
-                        if(number_of_plyr1_placed_ships.length == gameLogic.numShips)
+                        if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
                               gameLogic.player1Turn = false
                               shiplength = 1
                               
-                              console.log("placed ships: " + number_of_plyr1_placed_ships.length);
+                              console.log("placed ships: " + number_of_plyr1_placed_ships);
                               
                               //console.log("placed ships: " + number_of_placed_ships.length);
                         }
@@ -281,7 +281,7 @@ document.addEventListener("click", e => {
                                                 let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                                 all_player2_ships.push(ship)
                                                 shiplength=shiplength+1;
-                                                number_of_plyr2_placed_ships.push(1)
+                                                number_of_plyr2_placed_ships += 1
                                                 shipplaced = true
                                                 
                                           } 
@@ -301,7 +301,7 @@ document.addEventListener("click", e => {
                                                       let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                                       all_player2_ships.push(ship)
                                                       shiplength=shiplength+1;
-                                                      number_of_plyr2_placed_ships.push(1)
+                                                      number_of_plyr2_placed_ships +=
                                                       shipplaced = true
                                                       
                                                 } 
@@ -336,7 +336,7 @@ document.addEventListener("click", e => {
                                           let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                           all_player2_ships.push(ship)
                                           shiplength=shiplength+1;
-                                          number_of_plyr2_placed_ships.push(1)
+                                          number_of_plyr2_placed_ships += 1
                                           shipplaced = true
                                           
                                     } 
@@ -356,7 +356,7 @@ document.addEventListener("click", e => {
                                                 let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
                                                 all_player2_ships.push(ship)
                                                 shiplength=shiplength+1;
-                                                number_of_plyr2_placed_ships.push(1)
+                                                number_of_plyr2_placed_ships += 1
                                                 shipplaced = true
                                                 
                                           } 
@@ -382,13 +382,13 @@ document.addEventListener("click", e => {
                                     ship_placement_interface(shiplength,shipplaced);
                               }
                         }
-                        if(number_of_plyr2_placed_ships.length == gameLogic.numShips)
+                        if(number_of_plyr2_placed_ships == gameLogic.numShips)
                         {
                               gameLogic.player1Turn = true
                               gameLogic.firing = true
                               
                               
-                              console.log("placed ships: " + number_of_plyr2_placed_ships.length);
+                              console.log("placed ships: " + number_of_plyr2_placed_ships);
                         }
                   }
                   
