@@ -68,60 +68,68 @@ document.addEventListener("click", e => {
             }
             
       }
-      else if (gameLogic.placing == true){
+      if (gameLogic.placing == true){
             if(i>=0 && i<10 && j>=0 && j<9){
                   if (gameLogic.player1Turn == true){
-                        if(player1.board.shipsPlaced < gameLogic.numShips){
-                              if(player1.board.shipsPlaced == 0){
-                                    place_ship([j,i],[j,i],player1);
-                                    player1.board.shipsPlaced++;
-                              }
-                              else if(ship_front_tail.length == 2){
-                                    place_ship(ship_front_tail[0],ship_front_tail[1],player1);
-                                    ship_front_tail = [];
-                                    player1.board.shipsPlaced++;
-                              }
-                              else{
-                                    ship_front_tail.push([j,i]);  
-                              }
+                        // peter place a ship on the specific players board after validating that the ship placement is valid
+                        ship_front_tail.push([j,i])
+                        console.log(j,i)
+                        if(ship_front_tail.length == 2 )
+                        {
+                              place_ship(ship_front_tail[0], ship_front_tail[1], player1)
+                              number_of_plyr1_placed_ships.push(1)
+                              ship_front_tail.pop()
+                              ship_front_tail.pop()
                         }
-                        else{
-                              gameLogic.player1Turn = false;
+                        if(number_of_plyr1_placed_ships.length == gameLogic.numShips)
+                        {
+                              gameLogic.player1Turn = false
+                              
+                              
+                              console.log("placed ships: " + number_of_plyr1_placed_ships.length);
+                              
+                              //console.log("placed ships: " + number_of_placed_ships.length);
                         }
                   }
-                  else if (gameLogic.player1Turn == false){
-                        if(player2.board.shipsPlaced < gameLogic.numShips){
-                              if(player2.board.shipsPlaced == 0){
-                                    place_ship([j,i],[j,i],player2);
-                                    player2.board.shipsPlaced++;
-                              }
-                              else if(ship_front_tail.length == 2){
-                                    place_ship(ship_front_tail[0],ship_front_tail[1],player2);
-                                    ship_front_tail = [];
-                                    player2.board.shipsPlaced++;
-                              }
-                              else{
-                                    ship_front_tail.push([j,i]);  
-                              }
+                  if(gameLogic.player1Turn == false)
+                  {
+
+                        ship_front_tail.push([j,i])
+                        console.log(j,i)
+                        if(ship_front_tail.length == 2 )
+                        {
+                              place_ship(ship_front_tail[0], ship_front_tail[1], player2)
+                              number_of_plyr2_placed_ships.push(1)
+                              ship_front_tail.pop()
+                              ship_front_tail.pop()
                         }
-                        else{
-                              gameLogic.placing = false;
-                              gameLogic.firing = true;
+                        if(number_of_plyr2_placed_ships.length == gameLogic.numShips)
+                        {
+                              gameLogic.firing = true
+                              console.log("placed ships: " + number_of_plyr1_placed_ships.length);
+                              alert("fire shots at opponents board on the right")
+                              //gameLogic.player1Turn = true
+                              //gameLogic.placing = false;
+                              
                         }
-                        
                   }
+                  
             }
-            console.log(player1.board)
       }
-      else if (gameLogic.firing == true){
-            console.log("fire!")
+
+      if (gameLogic.firing == true){
+            gameLogic.player1Turn = true
             if(a>=0 && a<10 && b>=0 && b<9)
             {
                   if (gameLogic.player1Turn == true){
+                        console.log("fire!")
                         fire_missile([b,a], player2)
+                        gameLogic.player1Turn = false
                   }
                   else{
+                        console.log("fire!")
                         fire_missile([b,a], player1)
+                        gameLogic.player1Turn = true
                   }
             }
       }         
