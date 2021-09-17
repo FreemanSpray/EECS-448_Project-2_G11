@@ -55,11 +55,7 @@ function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
 */
 function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
 
-/*
-* @pre User clicks on screen
-* @param e represents x,y coordiante pair for where user clicked on screen.
-* @post Performs variety of tasks depending on where user clicked 
-*/
+
 function user_length_ship([x,y],[m,n],distance)
 {
       if(Math.abs(x-m)==distance||Math.abs(y-n)==distance)
@@ -73,8 +69,13 @@ function user_length_ship([x,y],[m,n],distance)
 
 
 };
-let shiplength=1;
-let shipplaced=true;
+let shiplength=1;//keeps track of length of ship that user is placing
+let shipplaced=true;//keeps track of wether ship was placed succesfully
+/*
+* @pre User clicks screen to indicate wher ship should be placed
+* @param n which represents the length of the ship being placed, shipplaced which describes if the ship placement was successful
+* @post Alerts user to place certain ship and passes control to click event to verify if ship placement was successful.
+*/
 function ship_placement_interface(n,shipplaced)
 {
             alert("Place your length " + n + " ship");
@@ -82,7 +83,11 @@ function ship_placement_interface(n,shipplaced)
       
             
 }
-
+/*
+* @pre User clicks on screen
+* @param e represents x,y coordiante pair for where user clicked on screen.
+* @post Performs variety of tasks depending on where user clicked 
+*/
 
 document.addEventListener("click", e => {
       const [i] = [e.x].map(roundMegreenhorz);
@@ -128,6 +133,7 @@ document.addEventListener("click", e => {
             }
             
       }
+      //sequence of if statements to verify and execute ship placement on based on a variety of factors
   
       if (gameLogic.placing == true){
             if(i>=0 && i<10 && j>=0 && j<9){
