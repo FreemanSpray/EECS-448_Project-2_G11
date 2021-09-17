@@ -23,39 +23,13 @@ function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
 */
 function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
 
-/*
-* @pre User clicks on screen
-* @param e represents x,y coordiante pair for where user clicked on screen.
-* @post Performs variety of tasks depending on where user clicked 
-*/
 
 
 /*
-* @pre 
-* @param x represents x coordinate passed in from coordinate pair
-* @post Converts x coordinate of screen to x value of cell on green board.
+* @pre User clicks coordiantes for start point and end point for ship
+* @param [x,y] representing the first coord and [m,n] representing the second coordiante, distance is set to the appropiate distance corresponding to the ship length.
+* @post Returns true if endpoints match distance of ship false if otherwise
 */
-function roundMegreenhorz(x){ return Math.floor(((x-85)/55))}
-/*
-* @pre 
-* @param y represents y coordinate passed in from coordinate pair
-* @post Converts y coordinate of screen to y value of cell on green board.
-*/
-function roundMegreenvert(y){return Math.floor(((y-85)/61.1))}
-/*
-* @pre 
-* @param x represents x coordinate passed in from coordinate pair
-* @post Converts x coordinate of screen to x value of cell on red board.
-*/
-function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
-/*
-* @pre 
-* @param y represents y coordinate passed in from coordinate pair
-* @post Converts y coordinate of screen to y value of cell on red board.
-*/
-function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
-
-
 function user_length_ship([x,y],[m,n],distance)
 {
       if(Math.abs(x-m)==distance||Math.abs(y-n)==distance)
@@ -394,6 +368,7 @@ document.addEventListener("click", e => {
                   
             }
       }
+
 
       if (gameLogic.firing == true){
             alert("fire at opponents ships on the right board")
