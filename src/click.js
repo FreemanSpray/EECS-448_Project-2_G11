@@ -75,7 +75,7 @@ function user_length_ship([x,y],[m,n],distance)
 };
 let shiplength=1;
 let shipplaced=true;
-function ship_placement_interface(n)
+function ship_placement_interface(n,shipplaced)
 {
             alert("Place your length " + n + " ship");
             shiplength=n;  
@@ -139,7 +139,7 @@ document.addEventListener("click", e => {
                         {
                               if(shiplength==1)
                               {
-                                    if([ship_front_tail[0][0],ship_front_tail[0][1]]==[ship_front_tail[1][0],ship_front_tail[1][1]])
+                                    if(ship_front_tail[0][0]==ship_front_tail[1][0] && ship_front_tail [0][1]==ship_front_tail[1][1])
                                     {
                                           try
                                           {
@@ -184,6 +184,8 @@ document.addEventListener("click", e => {
                                     else
                                     {
                                           alert("Ship has incorrect length");
+                                          ship_front_tail.pop()
+                                          ship_front_tail.pop()
                                           ship_placement_interface(shiplength,shipplaced);
                                     }
                                     
@@ -233,6 +235,8 @@ document.addEventListener("click", e => {
                               else
                               {
                                     alert("Ship has incorrect length");
+                                    ship_front_tail.pop()
+                                    ship_front_tail.pop()
                                     ship_placement_interface(shiplength,shipplaced);
                               }
                         }
