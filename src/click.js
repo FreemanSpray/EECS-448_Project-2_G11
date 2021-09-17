@@ -139,11 +139,41 @@ document.addEventListener("click", e => {
                         {
                               if(shiplength==1)
                               {
-                                    if(([ship_front_tail[0][0],ship_front_tail[0][1]]==[ship_front_tail[1][0],ship_front_tail[1][1]]))
+                                    if([ship_front_tail[0][0],ship_front_tail[0][1]]==[ship_front_tail[1][0],ship_front_tail[1][1]])
                                     {
-                                          shiplength=shiplength+1;
-                                          place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                                          number_of_plyr1_placed_ships.push(1)
+                                          try
+                                          {
+                                                place_ship(ship_front_tail[0], ship_front_tail[1], player1)
+                                                shiplength=shiplength+1;
+                                                number_of_plyr1_placed_ships.push(1)
+                                                shipplaced = true
+                                                
+                                          } 
+                                          catch(error)
+                                          {
+                                                console.log(error)
+                                                alert(error)
+                                                shipplaced = false
+                                                
+                                          }
+                                          if(shipplaced = false)
+                                          {
+                                                try
+                                                {
+                                                      
+                                                      place_ship(ship_front_tail[0], ship_front_tail[1], player1)
+                                                      shiplength=shiplength+1;
+                                                      number_of_plyr1_placed_ships.push(1)
+                                                      shipplaced = true
+                                                      
+                                                } 
+                                                catch(error)
+                                                {
+                                                      console.log(error)
+                                                      alert(error)
+                                                      shipplaced = false
+                                                }
+                                          }             
                                           ship_front_tail.pop()
                                           ship_front_tail.pop()
                                           if(shiplength<=gameLogic.numShips)
@@ -160,9 +190,39 @@ document.addEventListener("click", e => {
                               }
                               else if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
                               {
-                                    shiplength=shiplength+1;
-                                    place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                                    number_of_plyr1_placed_ships.push(1)
+                                    try
+                                    {
+                                          place_ship(ship_front_tail[0], ship_front_tail[1], player1)
+                                          shiplength=shiplength+1;
+                                          number_of_plyr1_placed_ships.push(1)
+                                          shipplaced = true
+                                          
+                                    } 
+                                    catch(error)
+                                    {
+                                          console.log(error)
+                                          alert(error)
+                                          shipplaced = false
+                                          
+                                    }
+                                    if(shipplaced = false)
+                                    {
+                                          try
+                                          {
+                                                
+                                                place_ship(ship_front_tail[0], ship_front_tail[1], player1)
+                                                shiplength=shiplength+1;
+                                                number_of_plyr1_placed_ships.push(1)
+                                                shipplaced = true
+                                                
+                                          } 
+                                          catch(error)
+                                          {
+                                                console.log(error)
+                                                alert(error)
+                                                shipplaced = false
+                                          }
+                                    }             
                                     ship_front_tail.pop()
                                     ship_front_tail.pop()
                                     if(shiplength<=gameLogic.numShips)
