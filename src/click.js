@@ -41,8 +41,43 @@ function user_length_ship([x,y],[m,n],distance)
 
 
 };
-
 let shiplength=0;
+
+function ship_placement_interface(n,clickx,clicky)
+{
+      for(let i=1; i<=n; i++)
+      {
+            console.log("Place your length " + i + " ship");
+            shiplength=i;
+            if (gameLogic.placing == true){
+                  if(clicky>=0 && clicky<10 && clickx>=0 && clickx<9){
+                        if (gameLogic.player1Turn == true){
+                        // peter place a ship on the specific players board after validating that the ship placement is valid
+                        ship_front_tail.push([clickx,clicky])
+                        console.log(clickx,clicky);
+                              if(ship_front_tail.length == 2)
+                              {
+                                          if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength)==true)                             
+                                          {
+                                                console.log(shiplength);
+                                                place_ship(ship_front_tail[0], ship_front_tail[1], player1);
+                                                number_of_plyr1_placed_ships.push(1);
+                                                ship_front_tail.pop();
+                                                ship_front_tail.pop();
+                                          }
+                                          else
+                                          {
+                                                alert("Wrong ship");
+                                          }
+                              }
+
+                        
+                        }
+                  }
+            }
+      }
+}
+
 
 document.addEventListener("click", e => {
       const [i] = [e.x].map(roundMegreenhorz);
@@ -79,14 +114,18 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
-                  alert("Place your length 1 ship");
                   gameLogic.pickNumShips = false;
                   gameLogic.placing = true;
+
+                  
                  
             }
             
       }
-      if (gameLogic.placing == true){
+      ship_placement_interface(gameLogic.numShips,j,i)
+
+  
+      /*if (gameLogic.placing == true){
             if(i>=0 && i<10 && j>=0 && j<9){
                   if (gameLogic.player1Turn == true){
                         if(gameLogic.numShips==1)
@@ -123,6 +162,7 @@ document.addEventListener("click", e => {
                               //console.log("placed ships: " + number_of_placed_ships.length);
                         }
                   }
+                  */
                   if(gameLogic.player1Turn == false)
                   {
 
@@ -146,8 +186,8 @@ document.addEventListener("click", e => {
                         }
                   }
                   
-            }
-      }
+            //}
+      //}
 
       if (gameLogic.firing == true){
             gameLogic.player1Turn = true
@@ -166,3 +206,16 @@ document.addEventListener("click", e => {
             }
       }         
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
