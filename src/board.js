@@ -262,11 +262,11 @@ function drawHitsAndMissesDuringTurn(){
     }
     
     if(gameLogic.player1Turn == true){
-        hitCells = get_hit_cells(player1);
-        missCells = get_miss_cells(player1);
-    } else if (gameLogic.player1Turn == false) {
         hitCells = get_hit_cells(player2);
         missCells = get_miss_cells(player2);
+    } else if (gameLogic.player1Turn == false) {
+        hitCells = get_hit_cells(player1);
+        missCells = get_miss_cells(player1);
     }
 
     for(let y = 0; y < 9; y++){
