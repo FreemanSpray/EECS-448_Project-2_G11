@@ -100,7 +100,6 @@ document.addEventListener("click", e => {
                   }
                   gameLogic.pickNumShips = false;
                   gameLogic.placing = true;
-                  alert("Place length 1 ship");
 
                   
                  
@@ -108,13 +107,16 @@ document.addEventListener("click", e => {
             
       }
       //sequence of if statements to verify and execute ship placement on based on a variety of factors
-  
-      if (gameLogic.placing == true){
+      
+      else if (gameLogic.placing == true){
             if(i>=0 && i<10 && j>=0 && j<9){
                   if (gameLogic.player1Turn == true){
                         // peter place a ship on the specific players board after validating that the ship placement is valid
                         ship_front_tail.push([j,i])
-                        console.log(j,i)
+                        console.log(j,i,' player1')
+                        if(number_of_plyr1_placed_ships == 0){
+                              ship_front_tail.push([j,i])
+                        }
                         if(ship_front_tail.length == 2)
                         {
                               if(shiplength==1)
@@ -238,11 +240,13 @@ document.addEventListener("click", e => {
                               //console.log("placed ships: " + number_of_placed_ships.length);
                         }
                   }
-                  
-                  if(gameLogic.player1Turn == false)
+                  else if(gameLogic.player1Turn == false)
                   {
                         ship_front_tail.push([j,i])
-                        console.log(j,i)
+                        console.log(j,i,' player2')
+                        if(number_of_plyr2_placed_ships == 0){
+                              ship_front_tail.push([j,i])
+                        }
                         if(ship_front_tail.length == 2)
                         {
                               if(shiplength==1)
@@ -360,19 +364,20 @@ document.addEventListener("click", e => {
                         {
                               gameLogic.player1Turn = true
                               gameLogic.firing = true
+                              gameLogic.placing = false
                               
                               
                               console.log("placed ships: " + number_of_plyr2_placed_ships);
                         }
                   }
                   
+
             }
       }
 
 
       if (gameLogic.firing == true){
             alert("fire at opponents ships on the right board")
-            gameLogic.player1Turn = true
             if(a>=0 && a<10 && b>=0 && b<9)
             {
                   if (gameLogic.player1Turn == true){
@@ -386,7 +391,10 @@ document.addEventListener("click", e => {
                         gameLogic.player1Turn = true
                   }
             }
-      }         
+      }
+      drawTemplate()
+      drawPlayersShipsDuringTurn()
+      drawHitsAndMissesDuringTurn()         
 })
 
 
