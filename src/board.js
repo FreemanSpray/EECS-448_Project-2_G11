@@ -273,13 +273,13 @@ function drawHitsAndMissesDuringTurn(){
         for(let x =0; x < 10; x++){
             for(let z =0; z < hitCells.length; z++){
                 if( equals(hitCells[z],[y,x]) ){
-                    context.fillStyle = "green";
+                    context.fillStyle = "red";
                     context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
                 }
             }
             for(let z =0; z < missCells.length; z++){
                 if( equals(missCells[z],[y,x]) ){
-                    context.fillStyle = "red";
+                    context.fillStyle = "blue";
                     context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
                 }
             }
