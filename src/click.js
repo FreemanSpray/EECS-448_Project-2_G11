@@ -98,6 +98,7 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
+                  alert("Place your length 1 ship")
                   gameLogic.pickNumShips = false;
                   gameLogic.placing = true;
 
