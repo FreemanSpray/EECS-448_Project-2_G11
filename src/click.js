@@ -164,5 +164,22 @@ document.addEventListener("click", e => {
                         gameLogic.player1Turn = true
                   }
             }
-      }         
+      }             
+      drawTemplate()
+      drawPlayersShipsDuringTurn()
+      drawHitsAndMissesDuringTurn()  
+      drawShipConnections();       
 })
+
+
+
+
+
+
+
+
+
+
+
+
+

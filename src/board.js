@@ -239,6 +239,56 @@ function drawPlayersShipsDuringTurn(){
 
 /*
 * @pre none
+* @param none
+* @post draws a line through the middle of a line of cells that make up a ship
+*/
+function drawShipConnections(){
+    let gamePiecePosistions = new Array(9);
+    let allPlayerShips;
+    //gamepiecePosistions is an array of all the cell posistions
+    for(let y=0; y < 9; y++){
+        gamePiecePosistions[y] = new Array(10);
+        for(let x=0; x < 10; x++){
+            gamePiecePosistions[y][x] = [75 + y*61.1, 75 + x*55];
+        }
+    }
+    //Deciding which players ships are being looked at
+    if (gameLogic.player1Turn == true){
+        allPlayerShips = all_player1_ships;
+    } else {
+        allPlayerShips = all_player2_ships;
+    }
+    //iterating through all of the players ships   
+    for(let i = 0; i < allPlayerShips.length; i++){
+        let currentShip = allPlayerShips[i];
+        //If the currentShip has a length of one, we don't need to do anything
+        //if not, check to see if the first cell location and last cell location share a value in the x or y direction to decide if the line should be horizontal or vertical
+        //Then draw the line using the gamePiecePosistions array to find the exact starting and ending positions for the line
+        if (currentShip.length != 1){
+            if (currentShip.locations[0][0] == currentShip.locations[currentShip.locations.length-1][0]){
+                console.log("Im in it");
+                context.beginPath();
+                context.lineWidth = 1.5;
+                context.strokeStyle = "black";
+                context.moveTo(gamePiecePosistions[currentShip.locations[0][0]][currentShip.locations[0][1]][1], gamePiecePosistions[currentShip.locations[0][0]][currentShip.locatins[0][1]][0]+30.55);
+                context.lineTo(gamePiecePosistions[currentShip.locations[1][0]][currentShip.locations[1][1]][1], gamePiecePosistions[currentShip.locations[1][0]][currentShip.locatins[1][1]][0]+30.55)
+                context.stroke();
+            } else if (currentShip.locations[0][1] == currentShip.locations[currentShip.locations.length-1][1]){
+                console.log("Im bout it");
+                context.beginPath();
+                context.lineWidth = 1.5;
+                context.strokeStyle = "black";
+                context.moveTo(gamePiecePosistions[currentShip.locations[0][0]][currentShip.locations[0][1]][1]+27.5, gamePiecePosistions[currentShip.locations[0][0]][currentShip.locatins[0][1]][0]);
+                context.lineTo(gamePiecePosistions[currentShip.locations[1][0]][currentShip.locations[1][1]][1]+27.5, gamePiecePosistions[currentShip.locations[1][0]][currentShip.locatins[1][1]][0]);
+                context.stroke();
+            }
+
+        }
+    }
+}
+
+/*
+* @pre none
 * @param Any given 2 arrays
 * @post Returns true if the arrays are equal
 */
@@ -258,6 +308,14 @@ document.addEventListener("DOMContentLoaded", () => {
     } 
     drawTemplate();
     drawStartUI();
+    drawShipConnections();
+    // player1.board["grid"][0][1].filled = true;
+    // player1.board["grid"][3][3].hit = true;
+    // player1.board["grid"][6][7].miss = true;
+    // player1.board["grid"][3][4].hit = true;
+    // player2.board["grid"][0][1].hit = true;
+    // drawPlayersShipsDuringTurn();
+    // drawHitsAndMissesDuringTurn();
   })
 
 
