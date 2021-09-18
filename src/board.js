@@ -230,12 +230,12 @@ function drawPlayersShipsDuringTurn(){
     
     if(gameLogic.player1Turn == true){
         playerCells = get_ship_cells(player1);
-        opponentsHitCells = get_hit_cells(player2);
-        opponentsMissCells = get_miss_cells(player2);
-    } else if (gameLogic.player1Turn == false) {
-        playerCells = get_ship_cells(player2);
         opponentsHitCells = get_hit_cells(player1);
         opponentsMissCells = get_miss_cells(player1);
+    } else if (gameLogic.player1Turn == false) {
+        playerCells = get_ship_cells(player2);
+        opponentsHitCells = get_hit_cells(player2);
+        opponentsMissCells = get_miss_cells(player2);
     }
 
     for(let y = 0; y < 9; y++){
@@ -293,11 +293,11 @@ function drawHitsAndMissesDuringTurn(){
     }
     
     if(gameLogic.player1Turn == true){
-        hitCells = get_hit_cells(player1);
-        missCells = get_miss_cells(player1);
-    } else if (gameLogic.player1Turn == false) {
         hitCells = get_hit_cells(player2);
         missCells = get_miss_cells(player2);
+    } else if (gameLogic.player1Turn == false) {
+        hitCells = get_hit_cells(player1);
+        missCells = get_miss_cells(player1);
     }
 
     for(let y = 0; y < 9; y++){
