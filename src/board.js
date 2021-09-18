@@ -12,7 +12,7 @@ function drawTemplate(){
     context.fillStyle = "rgba(255, 255, 255)";
     context.fillRect(0, 0, canvas.width, canvas.height);    
     context.stroke();
-    
+
     //draw header
     context.font = "50px Times New Roman";
     let gradient = context.createLinearGradient(0,0,canvas.width, 0);
@@ -218,6 +218,8 @@ function drawStartTurnButton(){
 function drawPlayersShipsDuringTurn(){
     let gamePiecePosistions = new Array(9);
     let playerCells;
+    let opponentsHitCells;
+    let opponentsMissCells;
 
     for(let y=0; y < 9; y++){
         gamePiecePosistions[y] = new Array(10);
@@ -228,8 +230,12 @@ function drawPlayersShipsDuringTurn(){
     
     if(gameLogic.player1Turn == true){
         playerCells = get_ship_cells(player1);
+        opponentsHitCells = get_hit_cells(player2);
+        opponentsMissCells = get_miss_cells(player2);
     } else if (gameLogic.player1Turn == false) {
         playerCells = get_ship_cells(player2);
+        opponentsHitCells = get_hit_cells(player1);
+        opponentsMissCells = get_miss_cells(player1);
     }
 
     for(let y = 0; y < 9; y++){
@@ -238,6 +244,31 @@ function drawPlayersShipsDuringTurn(){
                 if( equals(playerCells[z],[y,x]) ){
                     context.fillStyle = "black";
                     context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
+                }
+            }
+            for (let z = 0; z < opponentsMissCells.length; z++){
+                if(equals(opponentsMissCells[z], [y,x])){
+                    context.beginPath();
+                    context.lineWidth = 3;
+                    context.arc(gamePiecePosistions[y][x][1]+20.05, gamePiecePosistions[y][x][0]+20, 20, 0, 2*Math.PI, false);
+                    context.strokeStyle = "blue";
+                    context.stroke();
+                }
+            }
+            for (let z = 0; z < opponentsHitCells.length; z++){
+                if (equals(opponentsHitCells[z], [y,x])){
+                    context.beginPath();
+                    context.strokeStyle = "red";
+                    context.moveTo(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0]);
+                    context.lineTo(gamePiecePosistions[y][x][1]+40, gamePiecePosistions[y][x][0]+40)
+                    context.lineWidth = 3;
+                    context.stroke();
+                    context.beginPath();
+                    context.strokeStyle = "red";
+                    context.moveTo(gamePiecePosistions[y][x][1]+40, gamePiecePosistions[y][x][0]);
+                    context.lineTo(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0]+40)
+                    context.lineWidth = 3;
+                    context.stroke();
                 }
             }
         }
@@ -262,25 +293,38 @@ function drawHitsAndMissesDuringTurn(){
     }
     
     if(gameLogic.player1Turn == true){
-        hitCells = get_hit_cells(player2);
-        missCells = get_miss_cells(player2);
-    } else if (gameLogic.player1Turn == false) {
         hitCells = get_hit_cells(player1);
         missCells = get_miss_cells(player1);
+    } else if (gameLogic.player1Turn == false) {
+        hitCells = get_hit_cells(player2);
+        missCells = get_miss_cells(player2);
     }
 
     for(let y = 0; y < 9; y++){
         for(let x =0; x < 10; x++){
             for(let z =0; z < hitCells.length; z++){
                 if( equals(hitCells[z],[y,x]) ){
-                    context.fillStyle = "red";
-                    context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
+                    context.beginPath();
+                    context.strokeStyle = "red";
+                    context.moveTo(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0]);
+                    context.lineTo(gamePiecePosistions[y][x][1]+40, gamePiecePosistions[y][x][0]+40)
+                    context.lineWidth = 3;
+                    context.stroke();
+                    context.beginPath();
+                    context.strokeStyle = "red";
+                    context.moveTo(gamePiecePosistions[y][x][1]+40, gamePiecePosistions[y][x][0]);
+                    context.lineTo(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0]+40)
+                    context.lineWidth = 3;
+                    context.stroke();
                 }
             }
             for(let z =0; z < missCells.length; z++){
                 if( equals(missCells[z],[y,x]) ){
-                    context.fillStyle = "blue";
-                    context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
+                    context.beginPath();
+                    context.lineWidth = 3;
+                    context.arc(gamePiecePosistions[y][x][1]+20.05, gamePiecePosistions[y][x][0]+20, 20, 0, 2*Math.PI, false);
+                    context.strokeStyle = "blue";
+                    context.stroke();
                 }
             }
         }
@@ -308,6 +352,13 @@ document.addEventListener("DOMContentLoaded", () => {
     } 
     drawTemplate();
     drawStartUI();
+    // player1.board["grid"][0][1].filled = true;
+    // player1.board["grid"][3][3].hit = true;
+    // player1.board["grid"][6][7].miss = true;
+    // player1.board["grid"][3][4].hit = true;
+    // player2.board["grid"][0][1].hit = true;
+    // drawPlayersShipsDuringTurn();
+    // drawHitsAndMissesDuringTurn();
   })
 
 
