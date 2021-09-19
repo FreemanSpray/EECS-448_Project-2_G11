@@ -1,4 +1,4 @@
-/*
+/*/*
 * @pre 
 * @param x represents x coordinate passed in from coordinate pair
 * @post Converts x coordinate of screen to x value of cell on green board.
@@ -205,14 +205,12 @@ document.addEventListener("click", e => {
                   }
                   else if(gameLogic.player2Turn == true)
                   {
-                        shiplength = 1;
                         ship_front_tail.push([j,i])
                         if(number_of_plyr2_placed_ships == 0){
                               ship_front_tail.push([j,i])
                         }
                         if(ship_front_tail.length == 2)
                         {
-                              console.log(shiplength)
                               if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
                               {
                                     try
@@ -272,15 +270,19 @@ document.addEventListener("click", e => {
                               console.log("placed ships: " + number_of_plyr2_placed_ships);
                               boardfreezestate=1;
                               drawDoneTurnButton();
-                              gameLogic.player1Turn = false;
+                              gameLogic.player1Turn = true;
                               gameLogic.player2Turn = false;
+                              gameLogic.placing =false;
+                              
                         }
                   }
                   
 
             }
+
+            endTurnshipplacing(e.x,e.y);
             // end turn button
-            if (e.x>=650 && e.x<=850 && e.y>=300 && e.y <=340 && gameLogic.player1Turn == false && gameLogic.player2Turn == false){
+            /*if (e.x>=650 && e.x<=850 && e.y>=300 && e.y <=340 && gameLogic.player1Turn == false && gameLogic.player2Turn == false){
                   gameLogic.player1Turn = false;
                   gameLogic.player2Turn = true;
                   drawStartTurnButton();
@@ -295,7 +297,12 @@ document.addEventListener("click", e => {
             }
 
             
-      }
+      
+      */
+            }
+            endTurngame(e.x,e.y);
+
+
 
 
       if (gameLogic.firing == true){
@@ -320,11 +327,12 @@ document.addEventListener("click", e => {
       {
             drawTemplate();
             drawPlayersShipsDuringTurn();
-            drawHitsAndMissesDuringTurn();
+            drawHitsAndMissesDuringTurn(); 
             drawShipConnections();
       }
             
-})
+});
+
 
 
 
