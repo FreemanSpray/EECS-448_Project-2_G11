@@ -201,7 +201,7 @@ function drawStartTurnButton(){
     context.font = "20px Times New Roman";
     context.fillStyle = "Black";
     context.textAlign = "center";
-    if (gameLogic.player1Turn == true){
+    if (gameLogic.player1Turn == false){
         context.fillText("Player 2 Start Turn", 750, 325);
     } else {
         context.fillText("Player 1 Start Turn", 750, 325);
