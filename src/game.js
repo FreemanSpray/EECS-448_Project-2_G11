@@ -12,13 +12,54 @@ let gameLogic = new GameLogic();
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {  alert("Pick how many ships you'd like to play with!");   }, 300);
 })
-
-function endTurn(x,y){
+let endshipplacing_helper=0;
+ 
+function endTurnshipplacing(x,y){
     if (x>=650 && x<=850 && y >=300 && y <=340 ){
-        if (gameLogic.player1Turn == true && gameLogic.placing == true){
-            gameLogic.player2Turn == true;
-            gameLogic.player1Turn == false;
+        if (gameLogic.player1Turn == false && gameLogic.player2Turn==false && gameLogic.placing==true){
+            gameLogic.player2Turn = true;
+            gameLogic.player1Turn = false;
+            transition_state=1;
+            drawStartTurnButton();
+ 
         }
-
+        else if(gameLogic.player1Turn==false && gameLogic.player2Turn==true && gameLogic.placing==true)
+        {
+            drawTemplate();
+            shiplength=1;
+            alert("Place your length 1 ship");
+            boardfreezestate=0;
+        }
+        /*else if (gameLogic.player1Turn == false && gameLogic.player2Turn==false && gameLogic.placing == true)
+        {
+            console.log("hello")
+            gameLogic.player1.Turn==false
+            
+            drawStartTurnButton();
+ 
+        }
+        */
+ 
+        
+    }
+    
+}
+function endTurngame(x,y){
+    if (x>=650 && x<=850 && y >=300 && y <=340 && gameLogic.placing==false)
+    {
+ 
+        if(gameLogic.player1Turn == true && gameLogic.player2Turn==false && endshipplacing_helper==0)
+        {
+            drawStartTurnButton();
+            endshipplacing_helper=1;
+ 
+        }
+        else if(gameLogic.player1Turn == true && gameLogic.player2Turn==false && endshipplacing_helper==1)
+        {
+            boardfreezestate=0;
+            gameLogic.firing=true;
+        }
+ 
     }
 }
+
