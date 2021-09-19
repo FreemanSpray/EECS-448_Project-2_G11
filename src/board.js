@@ -170,7 +170,6 @@ function drawPlacingShipsText(){
 * @post draws the button that will indicate a given player is done with their turn
 */
 function drawDoneTurnButton(){
-    drawTemplate();
     context.beginPath();
     context.lineWidth = 2;
     context.strokeStyle = "Grey";
@@ -203,9 +202,9 @@ function drawStartTurnButton(){
     context.fillStyle = "Black";
     context.textAlign = "center";
     if (gameLogic.player1Turn == true){
-        context.fillText("P1 Start Turn", 750, 325);
+        context.fillText("Player 2 Start Turn", 750, 325);
     } else {
-        context.fillText("P2 Start Turn", 750, 325);
+        context.fillText("Player 1 Start Turn", 750, 325);
     }
     
 }
