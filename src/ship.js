@@ -28,19 +28,19 @@ function sink_ships(player)
     {
         for(let i = 0; i < number_of_plyr1_placed_ships; i++)
         {
-            if(all_player1_ships[i].locations[i].includes(hit_cells))//if all of one players ship locations is in the get_hit_cells then every location of that ship has been hit and the ship needs to be marked sunk
+            if(player1.board["grid"][all_player1_ships[i].locations[i][0]][all_player1_ships[i].locations[i][1]].hit == true)
             {
-                    all_player1_ships[i].sunk = true //dont know if this will work. it might change the wrong ship to sunk
+                    all_player1_ships[i].sunk = true
             }
         }
     }
     else if(player == player2)
     {
-        for(let i = 0; i < number_of_plyr1_placed_ships; i++)
+        for(let i = 0; i < number_of_plyr2_placed_ships; i++)
         {
-            if(all_player2_ships[i].locations[i].includes(hit_cells))//if all of one players ship locations is in the get_hit_cells then every location of that ship has been hit and the ship needs to be marked sunk
+            if(player2.board["grid"][all_player2_ships[i].locations[i][0]][all_player2_ships[i].locations[i][1]].hit == true)
             {
-                    all_player2_ships[i].sunk = true //dont know if this will work. it might change the wrong ship to sunk
+                    all_player2_ships[i].sunk = true 
             }
         }
     }
