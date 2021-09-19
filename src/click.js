@@ -29,6 +29,22 @@ function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
 * @param [x,y] representing the first coord and [m,n] representing the second coordiante, distance is set to the appropiate distance corresponding to the ship length.
 * @post Returns true if endpoints match distance of ship false if otherwise
 */
+function user_length_ship2([x,y],[m,n],distance)
+{
+      if(Math.abs(x-m)==distance||Math.abs(y-n)==distance)
+      {
+            return [Math.abs(x-m),distance]
+            return true;
+      }
+      else
+      {
+            return [Math.abs(x-m),distance]
+            return false;
+      }
+
+
+};
+
 function user_length_ship([x,y],[m,n],distance)
 {
       if(Math.abs(x-m)==distance||Math.abs(y-n)==distance)
@@ -57,34 +73,6 @@ function ship_placement_interface(n,shipplaced)
             shiplength=n;  
       
             
-}
-function switchingclickevents()
-{
-      document.addEventListener("click", j => {
-            if(j.x>=650 && j.x<=850 && j.y>=300 && j.y<=340)
-            {     
-                  drawStartTurnButton();
-                  /*
-                  * @pre Player clicks StartTurnButton
-                  * @param k which returns coordinate pair of where player 2 clicked
-                  * @post Transitions board to state where player2 can start their turn.
-                  */
-                  document.addEventListener("click", k => {
-                  if(k.x>=650 && k.x<=850 && k.y>=300 && k.y<=340)
-                  {
-
-                        drawTemplate();
-                                          
-                  }
-            })
-
-                                    
-                                    
-                                    
-                                  
-            }
-      })
-      return 2;
 }
 /*
 * @pre User clicks on screen
@@ -150,64 +138,7 @@ document.addEventListener("click", e => {
                         }
                         if(ship_front_tail.length == 2)
                         {
-                              if(shiplength==1)
-                              {
-                                    if(ship_front_tail[0][0]==ship_front_tail[1][0] && ship_front_tail [0][1]==ship_front_tail[1][1])
-                                    {
-                                          try
-                                          {
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player1_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr1_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                                
-                                          }
-                                          if(shipplaced = false)
-                                          {
-                                                try
-                                                {
-                                                      
-                                                      place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                                                      let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                      all_player1_ships.push(ship)
-                                                      shiplength=shiplength+1;
-                                                      number_of_plyr1_placed_ships += 1
-                                                      shipplaced = true
-                                                      
-                                                } 
-                                                catch(error)
-                                                {
-                                                      console.log(error)
-                                                      alert(error)
-                                                      shipplaced = false
-                                                }
-                                          }             
-                                          ship_front_tail.pop()
-                                          ship_front_tail.pop()
-                                          if(shiplength<=gameLogic.numShips)
-                                          {
-                                                ship_placement_interface(shiplength,shipplaced);
-                                          }
-                                    }
-                                    else
-                                    {
-                                          alert("Ship has incorrect length");
-                                          ship_front_tail.pop()
-                                          ship_front_tail.pop()
-                                          ship_placement_interface(shiplength,shipplaced);
-                                    }
-                                    
-                              }
-                              else if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
+                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
                               {
                                     try
                                     {
@@ -267,109 +198,22 @@ document.addEventListener("click", e => {
                               console.log("placed ships: " + number_of_plyr1_placed_ships);
                               boardfreezestate=1;
                               drawDoneTurnButton();
-                              /*
-                                    * @pre Player 1 clicks DoneTurnButton
-                                    * @param j which returns coordinate pair of where player 1 clicked
-                                    * @post Draws start turn button for player 2 to click
-                              */
-                              document.addEventListener("click", j => {
-                              if(j.x>=650 && j.x<=850 && j.y>=300 && j.y<=340)
-                              {     
-                                    drawStartTurnButton();
-                                    /*
-                                    * @pre Player clicks StartTurnButton
-                                    * @param k which returns coordinate pair of where player 2 clicked
-                                    * @post Transitions board to state where player2 can start their turn.
-                                    */
-                                    document.addEventListener("click", k => {
-                                    if(k.x>=650 && k.x<=850 && k.y>=300 && k.y<=340)
-                                    {
-
-                                          drawTemplate();
-                                          console.log("Hello");
-                                                            
-                                    }
-                                    })                  
-                                                      
-                                                    
-                              }
-                              })
-                            
-                              
-                              
-                                    
+                              gameLogic.player1Turn = false;
+                              gameLogic.player2Turn = false;        
                         }
                               
                   }
-                  if(gameLogic.player1Turn == false)
+                  else if(gameLogic.player2Turn == true)
                   {
-                        //console.log("Hello2")
-                        alert("Place your length 1 ship");
+                        shiplength = 1;
                         ship_front_tail.push([j,i])
-                        console.log(j,i,' player2')
                         if(number_of_plyr2_placed_ships == 0){
                               ship_front_tail.push([j,i])
                         }
                         if(ship_front_tail.length == 2)
                         {
-                              if(shiplength==1)
-                              {
-                                    if(ship_front_tail[0][0]==ship_front_tail[1][0] && ship_front_tail [0][1]==ship_front_tail[1][1])
-                                    {
-                                          try
-                                          {
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player2)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player2_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr2_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                                
-                                          }
-                                          if(shipplaced = false)
-                                          {
-                                                try
-                                                {
-                                                      
-                                                      place_ship(ship_front_tail[0], ship_front_tail[1], player2)
-                                                      let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                      all_player2_ships.push(ship)
-                                                      shiplength=shiplength+1;
-                                                      number_of_plyr2_placed_ships +=
-                                                      shipplaced = true
-                                                      
-                                                } 
-                                                catch(error)
-                                                {
-                                                      console.log(error)
-                                                      alert(error)
-                                                      shipplaced = false
-                                                }
-                                          }             
-                                          ship_front_tail.pop()
-                                          ship_front_tail.pop()
-                                          if(shiplength<=gameLogic.numShips)
-                                          {
-                                                ship_placement_interface(shiplength,shipplaced);
-                                          }
-                                    }
-                                    else
-                                    {
-                                          alert("Ship has incorrect length");
-                                          ship_front_tail.pop()
-                                          ship_front_tail.pop()
-                                          ship_placement_interface(shiplength,shipplaced);
-                                    }
-                                    
-                              }
-                              else if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
+                              console.log(shiplength)
+                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
                               {
                                     try
                                     {
@@ -425,17 +269,32 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr2_placed_ships == gameLogic.numShips)
                         {
-                              gameLogic.player1Turn = true
-                              gameLogic.firing = true
-                              gameLogic.placing = false
-                              
-                              
                               console.log("placed ships: " + number_of_plyr2_placed_ships);
+                              boardfreezestate=1;
+                              drawDoneTurnButton();
+                              gameLogic.player1Turn = false;
+                              gameLogic.player2Turn = false;
                         }
                   }
                   
 
             }
+            // end turn button
+            if (e.x>=650 && e.x<=850 && e.y>=300 && e.y <=340 && gameLogic.player1Turn == false && gameLogic.player2Turn == false){
+                  gameLogic.player1Turn = false;
+                  gameLogic.player2Turn = true;
+                  drawStartTurnButton();
+                  
+
+            }
+            // start turn button
+            else if (e.x>=650 && e.x<=850 && e.y>=300 && e.y <=340 && gameLogic.player1Turn == false && gameLogic.player2Turn == true){
+                  alert("Place your length 1 ship");
+                  gameLogic.placing = true;
+                  boardfreezestate = 0;
+            }
+
+            
       }
 
 
