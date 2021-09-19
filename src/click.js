@@ -24,7 +24,6 @@ function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
 function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
 
 
-
 /*
 * @pre User clicks coordiantes for start point and end point for ship
 * @param [x,y] representing the first coord and [m,n] representing the second coordiante, distance is set to the appropiate distance corresponding to the ship length.
@@ -45,6 +44,8 @@ function user_length_ship([x,y],[m,n],distance)
 };
 let shiplength=1;//keeps track of length of ship that user is placing
 let shipplaced=true;//keeps track of wether ship was placed succesfully
+let boardfreezestate=0; //freezes board when it equals 1 and player transtition is happening
+
 /*
 * @pre User clicks screen to indicate wher ship should be placed
 * @param n which represents the length of the ship being placed, shipplaced which describes if the ship placement was successful
@@ -57,11 +58,40 @@ function ship_placement_interface(n,shipplaced)
       
             
 }
+function switchingclickevents()
+{
+      document.addEventListener("click", j => {
+            if(j.x>=650 && j.x<=850 && j.y>=300 && j.y<=340)
+            {     
+                  drawStartTurnButton();
+                  /*
+                  * @pre Player clicks StartTurnButton
+                  * @param k which returns coordinate pair of where player 2 clicked
+                  * @post Transitions board to state where player2 can start their turn.
+                  */
+                  document.addEventListener("click", k => {
+                  if(k.x>=650 && k.x<=850 && k.y>=300 && k.y<=340)
+                  {
+
+                        drawTemplate();
+                                          
+                  }
+            })
+
+                                    
+                                    
+                                    
+                                  
+            }
+      })
+      return 2;
+}
 /*
 * @pre User clicks on screen
 * @param e represents x,y coordiante pair for where user clicked on screen.
 * @post Performs variety of tasks depending on where user clicked 
 */
+
 
 document.addEventListener("click", e => {
       const [i] = [e.x].map(roundMegreenhorz);
@@ -233,16 +263,48 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
-                              gameLogic.player1Turn = false
-                              shiplength = 1
                               
                               console.log("placed ships: " + number_of_plyr1_placed_ships);
+                              boardfreezestate=1;
+                              drawDoneTurnButton();
+                              /*
+                                    * @pre Player 1 clicks DoneTurnButton
+                                    * @param j which returns coordinate pair of where player 1 clicked
+                                    * @post Draws start turn button for player 2 to click
+                              */
+                              document.addEventListener("click", j => {
+                              if(j.x>=650 && j.x<=850 && j.y>=300 && j.y<=340)
+                              {     
+                                    drawStartTurnButton();
+                                    /*
+                                    * @pre Player clicks StartTurnButton
+                                    * @param k which returns coordinate pair of where player 2 clicked
+                                    * @post Transitions board to state where player2 can start their turn.
+                                    */
+                                    document.addEventListener("click", k => {
+                                    if(k.x>=650 && k.x<=850 && k.y>=300 && k.y<=340)
+                                    {
+
+                                          drawTemplate();
+                                          console.log("Hello");
+                                                            
+                                    }
+                                    })                  
+                                                      
+                                                    
+                              }
+                              })
+                            
                               
-                              //console.log("placed ships: " + number_of_placed_ships.length);
+                              
+                                    
                         }
+                              
                   }
-                  else if(gameLogic.player1Turn == false)
+                  if(gameLogic.player1Turn == false)
                   {
+                        //console.log("Hello2")
+                        alert("Place your length 1 ship");
                         ship_front_tail.push([j,i])
                         console.log(j,i,' player2')
                         if(number_of_plyr2_placed_ships == 0){
@@ -393,10 +455,15 @@ document.addEventListener("click", e => {
                   }
             }
       }
-      drawTemplate()
-      drawPlayersShipsDuringTurn()
-      drawHitsAndMissesDuringTurn()         
+      if(boardfreezestate==0)
+      {
+            drawTemplate();
+            drawPlayersShipsDuringTurn();
+            drawHitsAndMissesDuringTurn(); 
+      }
+            
 })
+
 
 
 
