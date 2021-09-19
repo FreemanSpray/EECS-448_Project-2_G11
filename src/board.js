@@ -351,13 +351,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } 
     drawTemplate();
     drawStartUI();
-    // player1.board["grid"][0][1].filled = true;
-    // player1.board["grid"][3][3].hit = true;
-    // player1.board["grid"][6][7].miss = true;
-    // player1.board["grid"][3][4].hit = true;
-    // player2.board["grid"][0][1].hit = true;
-    // drawPlayersShipsDuringTurn();
-    // drawHitsAndMissesDuringTurn();
   })
 
 
