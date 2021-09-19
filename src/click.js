@@ -446,11 +446,13 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         console.log("fire!")
                         fire_missile([b,a], player2)
+                        sink_ships(player2)
                         gameLogic.player1Turn = false
                   }
                   else{
                         console.log("fire!")
                         fire_missile([b,a], player1)
+                        sink_ships(player1)
                         gameLogic.player1Turn = true
                   }
             }
