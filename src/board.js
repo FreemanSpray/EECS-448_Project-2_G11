@@ -201,10 +201,10 @@ function drawStartTurnButton(){
     context.font = "20px Times New Roman";
     context.fillStyle = "Black";
     context.textAlign = "center";
-    if (gameLogic.player1Turn == false){
-        context.fillText("Player 2 Start Turn", 750, 325);
-    } else {
+    if (gameLogic.player1Turn == true){
         context.fillText("Player 1 Start Turn", 750, 325);
+    } else {
+        context.fillText("Player 2 Start Turn", 750, 325);
     }
     
 }
@@ -354,9 +354,6 @@ function drawShipConnections(){
     //iterating through all of the players ships   
     for(let i = 0; i < allPlayerShips.length; i++){
         let currentShip = allPlayerShips[i];
-        //If the currentShip has a length of one, we don't need to do anything
-        //if not, check to see if the first cell location and last cell location share a value in the x or y direction to decide if the line should be horizontal or vertical
-        //Then draw the line using the gamePiecePosistions array to find the exact starting and ending positions for the line
         if (currentShip.locations.length != 1){
             if (currentShip.locations[0][0] == currentShip.locations[currentShip.locations.length-1][0]){
                 console.log("Im in it");
@@ -374,7 +371,7 @@ function drawShipConnections(){
                 context.lineWidth = 1.5;
                 context.strokeStyle = "black";
                 context.moveTo(gamePiecePosistions[currentShip.locations[0][0]][currentShip.locations[0][1]][1]+27.5, gamePiecePosistions[currentShip.locations[0][0]][currentShip.locations[0][1]][0]);
-                context.lineTo(gamePiecePosistions[currentShip.locations[1][0]][currentShip.locations[1][1]][1]+27.5, gamePiecePosistions[currentShip.locations[1][0]][currentShip.locations[1][1]][0]+61.1);
+                context.lineTo(gamePiecePosistions[currentShip.locations[currentShip.locations.length-1][0]][currentShip.locations[currentShip.locations.length-1][1]][1]+27.5, gamePiecePosistions[currentShip.locations[currentShip.locations.length-1][0]][currentShip.locations[currentShip.locations.length-1][1]][0]+61.1);
                 context.stroke();
             }
 

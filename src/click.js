@@ -320,7 +320,8 @@ document.addEventListener("click", e => {
       {
             drawTemplate();
             drawPlayersShipsDuringTurn();
-            drawHitsAndMissesDuringTurn(); 
+            drawHitsAndMissesDuringTurn();
+            drawShipConnections();
       }
             
 })
