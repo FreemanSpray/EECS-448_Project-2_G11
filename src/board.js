@@ -356,7 +356,6 @@ function drawShipConnections(){
         let currentShip = allPlayerShips[i];
         if (currentShip.locations.length != 1){
             if (currentShip.locations[0][0] == currentShip.locations[currentShip.locations.length-1][0]){
-                console.log("Im in it");
                 context.beginPath();
                 context.lineWidth = 1.5;
                 context.strokeStyle = "black";
@@ -366,7 +365,6 @@ function drawShipConnections(){
                 context.lineTo(gamePiecePosistions[currentShip.locations[currentShip.locations.length-1][0]][currentShip.locations[currentShip.locations.length-1][1]][1]+55, gamePiecePosistions[currentShip.locations[currentShip.locations.length-1][0]][currentShip.locations[currentShip.locations.length-1][1]][0]+30.55);
                 context.stroke();
             } else if (currentShip.locations[0][1] == currentShip.locations[currentShip.locations.length-1][1]){
-                console.log("Im bout it");
                 context.beginPath();
                 context.lineWidth = 1.5;
                 context.strokeStyle = "black";
