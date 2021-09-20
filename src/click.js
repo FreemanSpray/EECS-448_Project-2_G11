@@ -319,12 +319,15 @@ document.addEventListener("click", e => {
                         
                         //gameLogic.player1Turn = false
                   }
-                  else{
+                  else if(gameLogic.player2Turn==true)
+                  {
                         console.log("fire!")
                         fire_missile([b,a], player1)
                         sink_ships(player1)
                         boardfreezestate=1;
                         drawDoneTurnButton();
+                        gameLogic.player2Turn=false;
+                        console.log(gameLogic.player2Turn,gameLogic.player1Turn);
                         //gameLogic.player1Turn = true
                   }
             }
@@ -337,8 +340,12 @@ document.addEventListener("click", e => {
             {
                   endTurngame(e.x,e.y);
             }
+            if(gameLogic.player1Turn==false && gameLogic.player2Turn==false)
+            {
+                  //console.log("here")
+                  endTurngame(e.x,e.y)
+            }
             
-
 
 
             //boardfreezestate=1;
