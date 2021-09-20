@@ -30,6 +30,109 @@ function fire_missile(locations,player)
     }
 }
 
+/*
+* @pre none
+* @param none
+* @post outputs if a player has won the game
+*/
+function win_check()
+{
+    if(gameLogic.numShips == 1)
+    {
+        if(all_player1_ships[0].sunk == true)
+        {
+            alert("Player 2 wins")
+            console.log("Player 2 wins")
+        }
+        
+        else if(all_player2_ships[0].sunk == true)
+        {
+            alert("Player 1 wins")
+            console.log("Player 1 wins")
+        }
+    }
+    else if (gameLogic.numShips == 2)
+    {
+    
+    
+        if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true)
+        {
+            alert("Player 2 wins")
+            console.log("Player 2 wins")
+        }
+        
+        else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true)
+        {
+            alert("Player 1 wins")
+            console.log("Player 1 wins")
+        }
+    }
+    else if (gameLogic.numShips == 3)
+    {
+    
+    
+        if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true)
+        {
+            alert("Player 2 wins")
+            console.log("Player 2 wins")
+        }
+        
+        else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true)
+        {
+            alert("Player 1 wins")
+            console.log("Player 1 wins")
+        }
+    }
+    else if (gameLogic.numShips == 4)
+    {
+    
+    
+        if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true && all_player1_ships[3].sunk == true)
+        {
+            alert("Player 2 wins")
+            console.log("Player 2 wins")
+        }
+        
+        else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true && all_player2_ships[3].sunk == true)
+        {
+            alert("Player 1 wins")
+            console.log("Player 1 wins")
+        }
+    }
+    else if (gameLogic.numShips == 5)
+    {
+    
+    
+        if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true && all_player1_ships[3].sunk == true && all_player1_ships[4].sunk == true)
+        {
+            alert("Player 2 wins")
+            console.log("Player 2 wins")
+        }
+        
+        else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true && all_player2_ships[3].sunk == true && all_player2_ships[4].sunk == true)
+        {
+            alert("Player 1 wins")
+            console.log("Player 1 wins")
+        }
+    }
+    else if (gameLogic.numShips == 6)
+    {
+    
+    
+        if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true && all_player1_ships[3].sunk == true && all_player1_ships[4].sunk == true && all_player1_ships[5].sunk == true)
+        {
+            alert("Player 2 wins")
+            console.log("Player 2 wins")
+        }
+        
+        else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true && all_player2_ships[3].sunk == true && all_player2_ships[4].sunk == true && all_player2_ships[5].sunk == true)
+        {
+            alert("Player 1 wins")
+            console.log("Player 1 wins")
+        }
+    }    
+}
+
 let board1 = new GameState();
 let board2 = new GameState();
 let player1 = new Player(board1, 1);
