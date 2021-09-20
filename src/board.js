@@ -151,17 +151,12 @@ function drawStartUI(){
 * @param none
 * @post draws the text that will display while the players are placing their ships
 */
-function drawPlacingShipsText(){
-    drawTemplate();
+function drawFireText(){
     context.font = "30px Times New Roman";
     context.fillStyle = "Black";
     context.textAlign = 'center';
-    if (gameLogic.player1Turn == true){
-        context.fillText("Player 1 place your ships!", 750,100, [200]);
-    } else {
-        context.fillText("Player 2 place your ships!", 750,100, [200]);
-    }
-    
+    context.fillText("Fire at the red grid to hit", 750,100, [200]);
+    context.fillText("your opponents Ships!", 750,150, [200]);
 }
 
 /*

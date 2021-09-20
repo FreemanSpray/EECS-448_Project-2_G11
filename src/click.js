@@ -287,8 +287,6 @@ document.addEventListener("click", e => {
       */
 
      if (gameLogic.firing == true){
-            alert("Fire on the right red grid at opponents ships");
-            
             if(a>=0 && a<10 && b>=0 && b<9)
             {
                   if (gameLogic.player1Turn == true){
