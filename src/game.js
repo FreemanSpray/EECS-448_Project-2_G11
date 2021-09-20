@@ -13,7 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {  alert("Pick how many ships you'd like to play with!");   }, 300);
 })
 
- 
+  /*
+* @pre User starts placing ships
+* @param x,y represent click event coordinates for where user clicked
+* @post Changes turns before player 1 and player 2 for placing ships.
+*/
+
 function endTurnshipplacing(x,y){
     if (x>=650 && x<=850 && y >=300 && y <=340 ){
         if (gameLogic.player1Turn == false && gameLogic.player2Turn==false && gameLogic.placing==true){
@@ -26,7 +31,7 @@ function endTurnshipplacing(x,y){
         {
             drawTemplate();
             shiplength=1;
-            alert("Place your length 1 ship");
+            alert("Place your length 1 ship on the left green grid");
             boardfreezestate=0;
         }
  
@@ -35,6 +40,12 @@ function endTurnshipplacing(x,y){
     
 }
 let endshipplacing_helper=0;//variable that equals 1 to indicate shipplacing has ended
+ /*
+* @pre User finishes placing ships 
+* @param x,y represent click event coordinates for where user clicked
+* @post Changes state of program from ship placing to firing and missing
+*/
+
 function transition(x,y){
     if (x>=650 && x<=850 && y >=300 && y <=340 && gameLogic.placing==false && gameLogic.firing==false)
     {
@@ -55,6 +66,11 @@ function transition(x,y){
 }
 
 
+ /*
+* @pre User starts firing and missing 
+* @param x,y represent click event coordinates for where user clicked
+* @post Changes turns before player 1 and player 2 for firing and missing
+*/
 
 
 function endTurngame(x,y, temp_player)
