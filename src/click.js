@@ -305,7 +305,7 @@ document.addEventListener("click", e => {
 
 
 
-      if (gameLogic.firing == true){
+     if (gameLogic.firing == true){
             alert("fire at opponents ships on the right board")
             if(a>=0 && a<10 && b>=0 && b<9)
             {
@@ -313,6 +313,9 @@ document.addEventListener("click", e => {
                         console.log("fire!")
                         fire_missile([b,a], player2)
                         sink_ships(player2)
+                        boardfreezestate=1;
+                        drawDoneTurnButton();
+                        
                         //gameLogic.player1Turn = false
                   }
                   else{
@@ -322,12 +325,20 @@ document.addEventListener("click", e => {
                         //gameLogic.player1Turn = true
                   }
             }
-            boardfreezestate=1;
-            drawDoneTurnButton();
+            if(gameLogic.player1Turn==true)
+            {
+                  endTurngame(e.x,e.y);
+            }
+            if(gameLogic.player1Turn==false)
+            {
+                  endTurngame(e.x,e.y);
+            }
+            //boardfreezestate=1;
+            //drawDoneTurnButton();
             
 
       }
-      endTurngame(e.x,e.y);
+
       if(boardfreezestate==0)
       {
             drawTemplate();
