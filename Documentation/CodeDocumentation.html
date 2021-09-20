@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Documentation</title>
+  </head>
+  
+  <body>
+    <h1>Board Methods</h1>
+    <p>
+/*
+* @pre none
+* @param none
+* @post draws the base template for the game
+*/
+function drawTemplate()
+   </p>
+  
+        <p>
+/*
+* @pre none
+* @param x coordinate and y coordinate of the cell selected to fire at
+* @post draws a red box at the coordinates
+*/
+function drawHitResult(x,y)
+   </p>
+    
+   <p>
+/*
+* @pre none
+* @param x coordinate and y coordinate of the cell selected to fire at
+* @post draws a blue box at the coordinates
+*/
+function drawMissResult(x,y)
+   </p>
+    
+   <p>
+/*
+* @pre none
+* @param none
+* @post draws the Start selection UI elements for the game
+*/
+function drawStartUI()
+   </p>    
+     
+   <p>
+/*
+* @pre none
+* @param none
+* @post draws the Start selection UI elements for the game
+*/
+function drawStartUI()
+   </p>      
+    
+   <p>
+/*
+* @pre none
+* @param none
+* @post draws the text that will display while the players are placing their ships
+*/
+function drawPlacingShipsText()
+   </p>      
+    
+    <p>
+/*
+* @pre none
+* @param none
+* @post draws the button that will indicate a given player is done with their turn
+*/
+function drawDoneTurnButton()
+   </p>  
+    
+    <p>
+/*
+* @pre none
+* @param none
+* @post draws the button that indicates a given player is about to start their turn
+*/
+function drawStartTurnButton()
+   </p>      
+    
+    <p>
+/*
+* @pre none
+* @param none
+* @post draws the ships of a given player when it is their turn
+*/
+function drawPlayersShipsDuringTurn()
+   </p>  
+    
+    <p>
+/*
+* @pre none
+* @param none
+* @post draws the hits and misses of a given player when it is their turn
+*/
+function drawHitsAndMissesDuringTurn()
+   </p>  
+      
+    <p>
+/*
+* @pre none
+* @param none
+* @post draws a line through the middle of a line of cells that make up a ship
+*/
+function drawShipConnections()
+   </p>     
+    
+    <p>
+/*
+* @pre none
+* @param Any given 2 arrays
+* @post Returns true if the arrays are equal
+*/
+function equals(array1, array2)
+   </p> 
+    
+<h2>Click Methods</h2>
+    
+    <p>
+/*/*
+* @pre 
+* @param x represents x coordinate passed in from coordinate pair
+* @post Converts x coordinate of screen to x value of cell on green board.
+*/
+function roundMegreenhorz(x){ return Math.floor(((x-85)/55))}
+   </p> 
+    
+    <p>
+/*
+* @pre 
+* @param y represents y coordinate passed in from coordinate pair
+* @post Converts y coordinate of screen to y value of cell on green board.
+*/
+function roundMegreenvert(y){return Math.floor(((y-85)/61.1))}
+   </p> 
+    
+    <p>
+/*
+* @pre 
+* @param x represents x coordinate passed in from coordinate pair
+* @post Converts x coordinate of screen to x value of cell on red board.
+*/
+function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
+   </p> 
+    
+    
+    
+    
+    
+    
+  </body>
+</html>
