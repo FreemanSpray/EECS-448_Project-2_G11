@@ -41,14 +41,12 @@ function win_check()
     {
         if(all_player1_ships[0].sunk == true)
         {
-            alert("Player 2 wins")
-            console.log("Player 2 wins")
+            alert("Player 2 wins, refersh screen to play again")
         }
         
         else if(all_player2_ships[0].sunk == true)
         {
-            alert("Player 1 wins")
-            console.log("Player 1 wins")
+            alert("Player 1 wins, refresh screen to play again")
         }
     }
     else if (gameLogic.numShips == 2)
@@ -57,14 +55,13 @@ function win_check()
     
         if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true)
         {
-            alert("Player 2 wins")
-            console.log("Player 2 wins")
+            alert("Player 2 wins, refersh screen to play again")
+        
         }
         
         else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true)
         {
-            alert("Player 1 wins")
-            console.log("Player 1 wins")
+            alert("Player 1 wins, refresh screen to play again")
         }
     }
     else if (gameLogic.numShips == 3)
@@ -73,14 +70,12 @@ function win_check()
     
         if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true)
         {
-            alert("Player 2 wins")
-            console.log("Player 2 wins")
+            alert("Player 2 wins, refersh screen to play again")
         }
         
         else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true)
         {
-            alert("Player 1 wins")
-            console.log("Player 1 wins")
+            alert("Player 1 wins, refresh screen to play again")
         }
     }
     else if (gameLogic.numShips == 4)
@@ -89,14 +84,12 @@ function win_check()
     
         if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true && all_player1_ships[3].sunk == true)
         {
-            alert("Player 2 wins")
-            console.log("Player 2 wins")
+            alert("Player 2 wins, refersh screen to play again")
         }
         
         else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true && all_player2_ships[3].sunk == true)
         {
-            alert("Player 1 wins")
-            console.log("Player 1 wins")
+            alert("Player 1 wins, refresh screen to play again")
         }
     }
     else if (gameLogic.numShips == 5)
@@ -105,14 +98,12 @@ function win_check()
     
         if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true && all_player1_ships[3].sunk == true && all_player1_ships[4].sunk == true)
         {
-            alert("Player 2 wins")
-            console.log("Player 2 wins")
+            alert("Player 2 wins, refersh screen to play again")
         }
         
         else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true && all_player2_ships[3].sunk == true && all_player2_ships[4].sunk == true)
         {
-            alert("Player 1 wins")
-            console.log("Player 1 wins")
+            alert("Player 1 wins, refresh screen to play again")
         }
     }
     else if (gameLogic.numShips == 6)
@@ -121,14 +112,12 @@ function win_check()
     
         if(all_player1_ships[0].sunk == true && all_player1_ships[1].sunk == true && all_player1_ships[2].sunk == true && all_player1_ships[3].sunk == true && all_player1_ships[4].sunk == true && all_player1_ships[5].sunk == true)
         {
-            alert("Player 2 wins")
-            console.log("Player 2 wins")
+            alert("Player 2 wins, refersh screen to play again")
         }
         
         else if(all_player2_ships[0].sunk == true && all_player2_ships[1].sunk == true && all_player2_ships[2].sunk == true && all_player2_ships[3].sunk == true && all_player2_ships[4].sunk == true && all_player2_ships[5].sunk == true)
         {
-            alert("Player 1 wins")
-            console.log("Player 1 wins")
+            alert("Player 1 wins, refresh screen to play again")
         }
     }    
 }
