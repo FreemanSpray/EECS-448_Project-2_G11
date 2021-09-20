@@ -300,7 +300,7 @@ document.addEventListener("click", e => {
       
       */
             }
-            endTurngame(e.x,e.y);
+            transition(e.x,e.y);
 
 
 
@@ -313,16 +313,21 @@ document.addEventListener("click", e => {
                         console.log("fire!")
                         fire_missile([b,a], player2)
                         sink_ships(player2)
-                        gameLogic.player1Turn = false
+                        //gameLogic.player1Turn = false
                   }
                   else{
                         console.log("fire!")
                         fire_missile([b,a], player1)
                         sink_ships(player1)
-                        gameLogic.player1Turn = true
+                        //gameLogic.player1Turn = true
                   }
             }
+            boardfreezestate=1;
+            drawDoneTurnButton();
+            
+
       }
+      endTurngame(e.x,e.y);
       if(boardfreezestate==0)
       {
             drawTemplate();
