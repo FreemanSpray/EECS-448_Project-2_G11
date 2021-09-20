@@ -132,7 +132,6 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         // peter place a ship on the specific players board after validating that the ship placement is valid
                         ship_front_tail.push([j,i])
-                        console.log(j,i,' player1')
                         if(number_of_plyr1_placed_ships == 0){
                               ship_front_tail.push([j,i])
                         }
@@ -195,7 +194,6 @@ document.addEventListener("click", e => {
                         if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
                               
-                              console.log("placed ships: " + number_of_plyr1_placed_ships);
                               boardfreezestate=1;
                               drawDoneTurnButton();
                               gameLogic.player1Turn = false;
@@ -267,7 +265,6 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr2_placed_ships == gameLogic.numShips)
                         {
-                              console.log("placed ships: " + number_of_plyr2_placed_ships);
                               boardfreezestate=1;
                               drawDoneTurnButton();
                               gameLogic.player1Turn = true;
@@ -291,31 +288,32 @@ document.addEventListener("click", e => {
             alert("fire at opponents ships on the right board")
             if(a>=0 && a<10 && b>=0 && b<9)
             {
-                  console.log(gameLogic.player1Turn, gameLogic.player2Turn)
                   if (gameLogic.player1Turn == true){
-                        temp_player = 1;
+                        gameLogic.temp_player = 1;
                         console.log("fire!")
                         fire_missile([b,a], player2)
                         sink_ships(player2)
                         win_check()
+                        gameLogic.startTurn = false;
                         boardfreezestate=1;
                         drawDoneTurnButton();
                         gameLogic.player1Turn = false;
                   }
                   else if(gameLogic.player2Turn==true)
                   {
-                        temp_player = 2;
+                        gameLogic.temp_player = 2;
                         console.log("fire!")
                         fire_missile([b,a], player1)
                         sink_ships(player1)
                         win_check()
                         boardfreezestate=1;
+                        gameLogic.startTurn = false;
                         drawDoneTurnButton();
                         gameLogic.player2Turn = false;
                   } 
             }
             if(gameLogic.player1Turn==false && gameLogic.player2Turn==false){
-                  endTurngame(e.x,e.y, temp_player);
+                  endTurngame(e.x,e.y, gameLogic.temp_player);
             }
             
 

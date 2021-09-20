@@ -203,7 +203,11 @@ function drawStartTurnButton(){
     context.textAlign = "center";
     if (gameLogic.player1Turn == true){
         context.fillText("Player 1 Start Turn", 750, 325);
-    } else {
+    }
+    else if(gameLogic.temp_player != 1){
+        context.fillText("Player 1 Start Turn", 750, 325);
+    }
+    else{
         context.fillText("Player 2 Start Turn", 750, 325);
     }
     

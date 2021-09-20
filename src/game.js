@@ -6,6 +6,8 @@ class GameLogic{
         this.player2Turn = false;
         this.firing = false;
         this.numShips = 1;
+        this.startTurn = false
+        this.temp_player = 1;
     }
 }
 let gameLogic = new GameLogic();
@@ -61,17 +63,21 @@ function endTurngame(x,y, temp_player)
 {
     if (x>=650 && x<=850 && y >=300 && y <=340 && gameLogic.placing==false && gameLogic.firing==true)
     {
-        console.log(temp_player)
-        if (temp_player == 1){
+        console.log(gameLogic.startTurn, gameLogic.temp_player)
+        if (gameLogic.temp_player == 1 && gameLogic.startTurn == true){
+            console.log("hello1")
             gameLogic.player1Turn=false;
             gameLogic.player2Turn=true;
-            boardfreezestate=0
+            boardfreezestate = 0;
         }
-        else{
+        else if(gameLogic.temp_player == 2 && gameLogic.startTurn == true){
+            console.log("hello2")
             gameLogic.player1Turn=true;
             gameLogic.player2Turn=false;
-            boardfreezestate=0
+            boardfreezestate = 0;
         }
+        drawStartTurnButton();
+        gameLogic.startTurn = true;
     }
 
 }
