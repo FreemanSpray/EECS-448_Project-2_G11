@@ -3,10 +3,9 @@ class GameLogic{
         this.pickNumShips = true;
         this.placing = false;
         this.player1Turn = true;
-        this.player2Turn = true;
+        this.player2Turn = false;
         this.firing = false;
         this.numShips = 1;
-        this.transitionturn=0;//variable that equals 1 when transitioning between turns during game
     }
 }
 let gameLogic = new GameLogic();
@@ -30,15 +29,6 @@ function endTurnshipplacing(x,y){
             alert("Place your length 1 ship");
             boardfreezestate=0;
         }
-        /*else if (gameLogic.player1Turn == false && gameLogic.player2Turn==false && gameLogic.placing == true)
-        {
-            console.log("hello")
-            gameLogic.player1.Turn==false
-            
-            drawStartTurnButton();
- 
-        }
-        */
  
         
     }
@@ -67,43 +57,21 @@ function transition(x,y){
 
 
 
-function endTurngame(x,y)
+function endTurngame(x,y, temp_player)
 {
     if (x>=650 && x<=850 && y >=300 && y <=340 && gameLogic.placing==false && gameLogic.firing==true)
     {
-        if(gameLogic.player1Turn == true && gameLogic.player2Turn==true)
-        {
-            //console.log("1turn")
-            drawTemplate();
+        console.log(temp_player)
+        if (temp_player == 1){
             gameLogic.player1Turn=false;
-            gameLogic.transitionturn=1;
-            //drawStartTurnButton();
+            gameLogic.player2Turn=true;
+            boardfreezestate=0
         }
-         //console.log(gameLogic.player1Turn,gameLogic.player2Turn)
-        else if(gameLogic.player1Turn==false && gameLogic.player2Turn==true && gameLogic.transitionturn==1)
-        {
-            //console.log("2turn");
-            drawStartTurnButton();
-            gameLogic.transitionturn=0;
-
-        }
-        else if(gameLogic.player1Turn==false && gameLogic.player2Turn==true && gameLogic.transitionturn==0)
-        {
-            //unfreezes board for player 2 turn
-            drawTemplate();
-            boardfreezestate=0;
-        }
-        //if(gameLogic.)
-        else if(gameLogic.player1Turn==false && gameLogic.player2Turn==false)
-        {
-            console.log("finish")
-            drawTemplate();
+        else{
             gameLogic.player1Turn=true;
-            drawStartTurnButton();
-            
+            gameLogic.player2Turn=false;
+            boardfreezestate=0
         }
-
-
     }
 
 }

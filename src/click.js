@@ -281,25 +281,7 @@ document.addEventListener("click", e => {
             }
 
             endTurnshipplacing(e.x,e.y);
-            // end turn button
-            /*if (e.x>=650 && e.x<=850 && e.y>=300 && e.y <=340 && gameLogic.player1Turn == false && gameLogic.player2Turn == false){
-                  gameLogic.player1Turn = false;
-                  gameLogic.player2Turn = true;
-                  drawStartTurnButton();
-                  
-
-            }
-            // start turn button
-            else if (e.x>=650 && e.x<=850 && e.y>=300 && e.y <=340 && gameLogic.player1Turn == false && gameLogic.player2Turn == true){
-                  alert("Place your length 1 ship");
-                  gameLogic.placing = true;
-                  boardfreezestate = 0;
-            }
-
-            
-      
-      */
-            }
+      }
             transition(e.x,e.y);
 
 
@@ -309,47 +291,30 @@ document.addEventListener("click", e => {
             alert("fire at opponents ships on the right board")
             if(a>=0 && a<10 && b>=0 && b<9)
             {
+                  console.log(gameLogic.player1Turn, gameLogic.player2Turn)
                   if (gameLogic.player1Turn == true){
+                        temp_player = 1;
                         console.log("fire!")
                         fire_missile([b,a], player2)
                         sink_ships(player2)
                         boardfreezestate=1;
                         drawDoneTurnButton();
-                        gameLogic.player2Turn=true;
-                        
-                        //gameLogic.player1Turn = false
+                        gameLogic.player1Turn = false;
                   }
                   else if(gameLogic.player2Turn==true)
                   {
+                        temp_player = 2;
                         console.log("fire!")
                         fire_missile([b,a], player1)
                         sink_ships(player1)
                         boardfreezestate=1;
                         drawDoneTurnButton();
-                        gameLogic.player2Turn=false;
-                        console.log(gameLogic.player2Turn,gameLogic.player1Turn);
-                        //gameLogic.player1Turn = true
-                  }
+                        gameLogic.player2Turn = false;
+                  } 
             }
-            if(gameLogic.player1Turn==true && gameLogic.player2Turn==true)
-            {
-                  
-                  endTurngame(e.x,e.y);
+            if(gameLogic.player1Turn==false && gameLogic.player2Turn==false){
+                  endTurngame(e.x,e.y, temp_player);
             }
-            if(gameLogic.player1Turn==false && gameLogic.player2Turn==true)
-            {
-                  endTurngame(e.x,e.y);
-            }
-            if(gameLogic.player1Turn==false && gameLogic.player2Turn==false)
-            {
-                  //console.log("here")
-                  endTurngame(e.x,e.y)
-            }
-            
-
-
-            //boardfreezestate=1;
-            //drawDoneTurnButton();
             
 
       }
