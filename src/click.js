@@ -293,7 +293,6 @@ document.addEventListener("click", e => {
             {
                   if (gameLogic.player1Turn == true){
                         gameLogic.temp_player = 1;
-                        console.log("fire!")
                         fire_missile([b,a], player2)
                         sink_ships(player2)
                         win_check()
@@ -305,7 +304,6 @@ document.addEventListener("click", e => {
                   else if(gameLogic.player2Turn==true)
                   {
                         gameLogic.temp_player = 2;
-                        console.log("fire!")
                         fire_missile([b,a], player1)
                         sink_ships(player1)
                         win_check()

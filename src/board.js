@@ -363,8 +363,6 @@ function drawShipConnections(){
                 context.beginPath();
                 context.lineWidth = 1.5;
                 context.strokeStyle = "black";
-                console.log(currentShip.locations[currentShip.locations.length-1][0]);
-                console.log(currentShip.locations[currentShip.locations.length-1][1]);
                 context.moveTo(gamePiecePosistions[currentShip.locations[0][0]][currentShip.locations[0][1]][1], gamePiecePosistions[currentShip.locations[0][0]][currentShip.locations[0][1]][0]+30.55);
                 context.lineTo(gamePiecePosistions[currentShip.locations[currentShip.locations.length-1][0]][currentShip.locations[currentShip.locations.length-1][1]][1]+55, gamePiecePosistions[currentShip.locations[currentShip.locations.length-1][0]][currentShip.locations[currentShip.locations.length-1][1]][0]+30.55);
                 context.stroke();
