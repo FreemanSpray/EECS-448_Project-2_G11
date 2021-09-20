@@ -89,10 +89,19 @@ function endTurngame(x,y)
         }
         else if(gameLogic.player1Turn==false && gameLogic.player2Turn==true && gameLogic.transitionturn==0)
         {
+            //unfreezes board for player 2 turn
             drawTemplate();
             boardfreezestate=0;
         }
         //if(gameLogic.)
+        else if(gameLogic.player1Turn==false && gameLogic.player2Turn==false)
+        {
+            console.log("finish")
+            drawTemplate();
+            gameLogic.player1Turn=true;
+            drawStartTurnButton();
+            
+        }
 
 
     }
