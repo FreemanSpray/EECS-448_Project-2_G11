@@ -19,7 +19,6 @@ function endTurnshipplacing(x,y){
         if (gameLogic.player1Turn == false && gameLogic.player2Turn==false && gameLogic.placing==true){
             gameLogic.player2Turn = true;
             gameLogic.player1Turn = false;
-            transition_state=1;
             drawStartTurnButton();
  
         }
@@ -44,8 +43,8 @@ function endTurnshipplacing(x,y){
     }
     
 }
-function endTurngame(x,y){
-    if (x>=650 && x<=850 && y >=300 && y <=340 && gameLogic.placing==false)
+function transition(x,y){
+    if (x>=650 && x<=850 && y >=300 && y <=340 && gameLogic.placing==false && gameLogic.firing==false)
     {
  
         if(gameLogic.player1Turn == true && gameLogic.player2Turn==false && endshipplacing_helper==0)
@@ -61,5 +60,28 @@ function endTurngame(x,y){
         }
  
     }
+}
+
+function endTurngame(x,y)
+{
+    if (x>=650 && x<=850 && y >=300 && y <=340 && gameLogic.placing==false && gameLogic.firing==true)
+    {
+        if(gameLogic.player1Turn == true && gameLogic.player2Turn==false)
+        {
+            console.log("1turn")
+            drawTemplate();
+            gameLogic.player1Turn==false;
+            //drawStartTurnButton();
+        }
+         //console.log(gameLogic.player1Turn,gameLogic.player2Turn)
+        else if(gameLogic.player1Turn==false && gameLogic.player2Turn==false)
+        {
+            console.log("2turn");
+            drawStartTurnButton();
+        }
+
+
+    }
+
 }
 
