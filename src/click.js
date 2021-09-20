@@ -297,6 +297,7 @@ document.addEventListener("click", e => {
                         console.log("fire!")
                         fire_missile([b,a], player2)
                         sink_ships(player2)
+                        win_check()
                         boardfreezestate=1;
                         drawDoneTurnButton();
                         gameLogic.player1Turn = false;
@@ -307,6 +308,7 @@ document.addEventListener("click", e => {
                         console.log("fire!")
                         fire_missile([b,a], player1)
                         sink_ships(player1)
+                        win_check()
                         boardfreezestate=1;
                         drawDoneTurnButton();
                         gameLogic.player2Turn = false;
