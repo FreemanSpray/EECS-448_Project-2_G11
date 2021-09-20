@@ -54,7 +54,7 @@ let boardfreezestate=0; //freezes board when it equals 1 and player transtition 
 */
 function ship_placement_interface(n,shipplaced)
 {
-            alert("Place your length " + n + " ship on the left green grid");
+            alert("Place your length " + n + " ship on the left green grid by clicking the starting and ending cells");
             shiplength=n;  
       
             
@@ -287,7 +287,7 @@ document.addEventListener("click", e => {
       */
 
      if (gameLogic.firing == true){
-       alert("Player fire at opponents ships on the right red board")
+            alert("Fire on the right red grid at opponents ships");
             
             if(a>=0 && a<10 && b>=0 && b<9)
             {
