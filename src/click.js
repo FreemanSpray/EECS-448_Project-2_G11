@@ -29,21 +29,6 @@ function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
 * @param [x,y] representing the first coord and [m,n] representing the second coordiante, distance is set to the appropiate distance corresponding to the ship length.
 * @post Returns true if endpoints match distance of ship false if otherwise
 */
-function user_length_ship2([x,y],[m,n],distance)
-{
-      if(Math.abs(x-m)==distance||Math.abs(y-n)==distance)
-      {
-            return [Math.abs(x-m),distance]
-            return true;
-      }
-      else
-      {
-            return [Math.abs(x-m),distance]
-            return false;
-      }
-
-
-};
 
 function user_length_ship([x,y],[m,n],distance)
 {
@@ -69,7 +54,7 @@ let boardfreezestate=0; //freezes board when it equals 1 and player transtition 
 */
 function ship_placement_interface(n,shipplaced)
 {
-            alert("Place your length " + n + " ship");
+            alert("Place your length " + n + " ship on the left green grid");
             shiplength=n;  
       
             
@@ -86,6 +71,12 @@ document.addEventListener("click", e => {
       const [j] = [e.y].map(roundMegreenvert);
       const[a]=[e.x].map(roundMeredhorz);
       const[b]=[e.y].map(roundMeredvert); 
+      /*
+            * @pre User clicks button for choosing number of ships
+            * @param gameLogic.pickNumShips  determines what button was clicked
+            * @post Sets gameLogic.numShips to appropiate value based on button clicked
+      */
+
       if (gameLogic.pickNumShips == true){
             if(e.x>=660 && e.x<=860)//checks to see what button is clicked for number of Ships and set numShips to appropiate value
             {
@@ -116,7 +107,7 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
-                  alert("Place your length 1 ship")
+                  alert("Place your length 1 ship on the left green grid")
                   gameLogic.pickNumShips = false;
                   gameLogic.placing = true;
 
@@ -126,7 +117,13 @@ document.addEventListener("click", e => {
             
       }
       //sequence of if statements to verify and execute ship placement on based on a variety of factors
+      /*
+            * @pre User clicks points where they want ships to be placed
+            *  @param e from the click event and variables from game.js class
+            *  @post Places ships for both players
+      */
       
+
       else if (gameLogic.placing == true){
             if(i>=0 && i<10 && j>=0 && j<9){
                   if (gameLogic.player1Turn == true){
@@ -280,15 +277,21 @@ document.addEventListener("click", e => {
 
             }
 
-            endTurnshipplacing(e.x,e.y);
+            endTurnshipplacing(e.x,e.y);//ends ship placing for both users
       }
-            transition(e.x,e.y);
+            transition(e.x,e.y);//transitions to firing and missing turns
 
 
 
-    
+    /*
+            * @pre User clicks button for to fire at ships
+            * @param gameLogic class and e from click event
+            * @post Draws fire or miss result on both player boards
+      */
+
      if (gameLogic.firing == true){
-            alert("fire at opponents ships on the right board")
+       alert("Player fire at opponents ships on the right red board")
+            
             if(a>=0 && a<10 && b>=0 && b<9)
             {
                   console.log(gameLogic.player1Turn, gameLogic.player2Turn)
@@ -321,6 +324,7 @@ document.addEventListener("click", e => {
 
       }
 
+      //checks to see if board is not frozen so everything is redrawn
       if(boardfreezestate==0)
       {
             drawTemplate();
