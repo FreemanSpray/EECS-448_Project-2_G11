@@ -188,6 +188,9 @@ function drawDoneTurnButton(){
 */
 function drawStartTurnButton(){
     drawTemplate();
+    if (gameLogic.placing == false){
+        drawFireText();
+    }
     context.beginPath();
     context.lineWidth = 2;
     context.strokeStyle = "Grey";
