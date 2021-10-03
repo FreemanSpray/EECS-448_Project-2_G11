@@ -1,3 +1,6 @@
+//minor bug: clicking a tile after completing player 1 setup but before passing to player 2 gives an incorrect ship length message. (occurs when mirrorMode = 1 or 0)
+//bug: game is ending after a single hit on each ship, rather than the appropriate number of hits on each ship. (occurs only when mirrorMode = 1)
+
 /*/*
 * @pre 
 * @param x represents x coordinate passed in from coordinate pair
@@ -46,6 +49,7 @@ function user_length_ship([x,y],[m,n],distance)
 let shiplength=1;//keeps track of length of ship that user is placing
 let shipplaced=true;//keeps track of wether ship was placed succesfully
 let boardfreezestate=0; //freezes board when it equals 1 and player transtition is happening
+let mirrorMode = 0; //mirrors shots across both boards (custom feature) when equal to 1.
 
 /*
 * @pre User clicks screen to indicate wher ship should be placed
@@ -292,7 +296,11 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         gameLogic.temp_player = 1;
                         fire_missile([b,a], player2)
-                        sink_ships(player2)
+			if (mirrorMode == 1){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				fire_missile([b,a], player1);
+				sink_ships(player1);		//sinking player 1's ship first. Since the win is checked for after, it shouldn't matter which ship is sunk first.
+                        }
+			sink_ships(player2)
                         win_check()
                         gameLogic.startTurn = false;
                         boardfreezestate=1;
@@ -303,6 +311,10 @@ document.addEventListener("click", e => {
                   {
                         gameLogic.temp_player = 2;
                         fire_missile([b,a], player1)
+			if (mirrorMode == 1){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				fire_missile([b,a], player2);
+				sink_ships(player2);		//sinking player 1's ship first. Since the win is checked for after, it shouldn't matter which ship is sunk first.
+			}
                         sink_ships(player1)
                         win_check()
                         boardfreezestate=1;
