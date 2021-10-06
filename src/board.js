@@ -146,6 +146,97 @@ function drawStartUI(){
     }
 }
 
+
+/*
+* @pre none
+* @param none
+* @post draws the opponent/ai selection UI elements
+*/
+function drawAiSelection() {
+    //draws sub header
+    context.font = "30px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = 'center';
+    context.fillText("Welcome to BattleShip!", 750, 100, [200]);
+    context.fillText("Choose your opponent", 750, 150, [220]);
+
+    //draws the buttons for opponent selection
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 1, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Human", 750, 175 + 50 * 1);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 2, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Easy AI", 750, 175 + 50 * 2);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 3, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Medium AI", 750, 175 + 50 * 3);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 4, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Hard AI", 750, 175 + 50 * 4);
+}
+
+/*
+* @pre none
+* @param none
+* @post draws the game mode selection UI elements
+*/
+function drawModeSelection() {
+    //draws sub header
+    context.font = "30px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = 'center';
+    context.fillText("Welcome to BattleShip!", 750, 100, [200]);
+    context.fillText("Choose the game mode", 750, 150, [220]);
+
+    //draws the buttons for mode selection
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 1, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Normal", 750, 175 + 50 * 1);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 2, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Mirror Mode", 750, 175 + 50 * 2);
+}
+
 /*
 * @pre none
 * @param none

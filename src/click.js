@@ -111,15 +111,62 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
-                  alert("Place your length 1 ship on the left green grid")
                   gameLogic.pickNumShips = false;
-                  gameLogic.placing = true;
-
+                  gameLogic.pickOpponent = true;
                   
                  
             }
             
       }
+       //sequence of if statements to verify and execute ship placement on based on a variety of factors
+      /*
+            * @pre User clicks points where they want ships to be placed
+            *  @param e from the click event and variables from game.js class
+            *  @post Places ships for both players
+      */
+
+      else if (gameLogic.pickOpponent == true) {
+          if (e.x >= 660 && e.x <= 860)//checks to see what button is clicked for opponent selection and sets opponent to appropiate value
+          {
+              if (e.y >= 210 && e.y <= 250) {
+                  gameLogic.opponent = 1;
+              }
+              else if (e.y >= 260 && e.y <= 300) {
+                  gameLogic.opponent = 2;
+              }
+              else if (e.y >= 310 && e.y <= 350) {
+                  gameLogic.opponent = 3;
+              }
+              else if (e.y >= 360 && e.y <= 400) {
+                  gameLogic.opponent = 4;
+              }
+              gameLogic.pickOpponent = false;
+              gameLogic.pickGameMode = true;
+          }
+      }
+
+      //sequence of if statements to verify and execute ship placement on based on a variety of factors
+      /*
+            * @pre User clicks points where they want ships to be placed
+            *  @param e from the click event and variables from game.js class
+            *  @post Places ships for both players
+      */
+
+      else if (gameLogic.pickGameMode == true) {
+          if (e.x >= 660 && e.x <= 860)//checks to see what button is clicked for game mode selection and sets gameMode to appropiate value
+          {
+              if (e.y >= 210 && e.y <= 250) {
+                  gameLogic.gameMode = 1;
+              }
+              else if (e.y >= 260 && e.y <= 300) {
+                  gameLogic.gameMode = 2;
+              }
+              gameLogic.pickGameMode = false;
+              gameLogic.placing = true;
+          }
+      }
+
+
       //sequence of if statements to verify and execute ship placement on based on a variety of factors
       /*
             * @pre User clicks points where they want ships to be placed
