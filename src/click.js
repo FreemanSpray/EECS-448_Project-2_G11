@@ -112,17 +112,18 @@ document.addEventListener("click", e => {
 
                   }
                   gameLogic.pickNumShips = false;
-                  gameLogic.pickOpponent = true;
+                  gameLogic.placing = true;
+                  //gameLogic.pickOpponent = true;
                   
                  
             }
             
       }
-       //sequence of if statements to verify and execute ship placement on based on a variety of factors
+
       /*
-            * @pre User clicks points where they want ships to be placed
+            *  @pre 
             *  @param e from the click event and variables from game.js class
-            *  @post Places ships for both players
+            *  @post 
       */
 
       else if (gameLogic.pickOpponent == true) {
@@ -145,11 +146,10 @@ document.addEventListener("click", e => {
           }
       }
 
-      //sequence of if statements to verify and execute ship placement on based on a variety of factors
       /*
-            * @pre User clicks points where they want ships to be placed
+            *  @pre 
             *  @param e from the click event and variables from game.js class
-            *  @post Places ships for both players
+            *  @post 
       */
 
       else if (gameLogic.pickGameMode == true) {
