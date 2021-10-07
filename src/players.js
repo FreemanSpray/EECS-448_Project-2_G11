@@ -5,7 +5,7 @@ class Player {
     }
     
 }
-/*
+/** 
 * @pre none
 * @param location of missile destination(where you want the missile to go)
 * @post updates the grid of the player who fired it depending on result, displays a blue or red box on the screen where they shot depending on result, alerts the play on the result of a shot
@@ -30,7 +30,7 @@ function fire_missile(locations,player)
     }
 }
 
-/*
+/** 
 * @pre none
 * @param none
 * @post outputs if a player has won the game
