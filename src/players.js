@@ -17,7 +17,7 @@ function fire_missile(locations,player)
         player.board["grid"][locations[0]][locations[1]].hit = true
         drawHitResult(locations[0], locations[1])
 
-	if(mirrorMode == false){
+	if(gameLogic.gameMode != 2){
 		console.log("HIT")
 		window.alert("HIT")
 	}
@@ -31,7 +31,7 @@ function fire_missile(locations,player)
     {
         player.board["grid"][locations[0]][locations[1]].miss = true
         drawMissResult(locations[0], locations[1])
-	if(mirrorMode == false){
+	if(gameLogic.gameMode != 2){
 		console.log("MISS")
 		window.alert("MISS")
 	}
