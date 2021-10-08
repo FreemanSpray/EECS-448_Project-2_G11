@@ -13,19 +13,19 @@ function getRandomCoordinates(shipLength){
     genOrientation = Math.floor(Math.random()*2);  //ranges between 0 and 1 
     if(genOrientation == 0){ //0 is vertical, 1 is horizontal
         genTailX = genFrontX;
-        if(genfrontY + shipLength >= 8){
-            genTailY = genFrontY - shipLength;    
+        if(genFrontY + (shipLength - 1) >= 8){
+            genTailY = genFrontY - (shipLength - 1);    
         }
         else {
-            genTailY = genFrontY + shipLength;
+            genTailY = genFrontY + (shipLength - 1);
         }
     }
     else {
-        if(genfrontX + shipLength >= 9){
-            genTailX = genFrontX - shipLength;    
+        if(genFrontX + (shipLength - 1) >= 9){
+            genTailX = genFrontX - (shipLength - 1);    
         }
         else {
-            genTailX = genFrontX + shipLength;
+            genTailX = genFrontX + (shipLength - 1);
         }
         genTailY = genFrontY;
     }
@@ -38,15 +38,15 @@ function getRandomCoordinates(shipLength){
 
 function placeAIShips(){
     for(let i = 1; i <= gameLogic.numShips; i++){
+        let shipplaced = false;
         while(shipplaced == false){
-            genCoordinates = getRandomCoordinates(i + 1);
+            genCoordinates = getRandomCoordinates(i);
             try
             {
-                console.log("placing")
+                console.log(genCoordinates)
                 place_ship(genCoordinates[0], genCoordinates[1], player2)
                 let ship = new Ship(get_all_ship_cells(genCoordinates[0], genCoordinates[1]))
                 all_player2_ships.push(ship)
-                shiplength=shiplength+1;
                 number_of_plyr2_placed_ships += 1
                 shipplaced = true
                   
@@ -56,6 +56,12 @@ function placeAIShips(){
                 console.log(error)
                 shipplaced = false
             }
+            genCoordinates.pop();
+            genFront.pop();
+            genTail.pop();
+            genCoordinates.pop();
+            genFront.pop();
+            genTail.pop();
         }
     }
 }

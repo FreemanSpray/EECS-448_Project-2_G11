@@ -269,9 +269,6 @@ function drawDoneTurnButton(){
     if (gameLogic.player1Turn == true){
         context.fillText("Player 1 Turn Done", 750, 325);
     }
-    else if (gameLogic.opponent != 0){
-        context.fillText("Pass to AI", 750, 325);
-    }
     else {
         context.fillText("Player 2 Turn Done", 750, 325);
     }
@@ -302,7 +299,10 @@ function drawStartTurnButton(){
     else if(gameLogic.temp_player != 1){
         context.fillText("Player 1 Start Turn", 750, 325);
     }
-    else{
+    else if (gameLogic.opponent != 1){
+        context.fillText("Pass to AI", 750, 325);
+    }
+    else {
         context.fillText("Player 2 Start Turn", 750, 325);
     }
     

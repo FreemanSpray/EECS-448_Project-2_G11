@@ -138,6 +138,7 @@ function place_ship(cord1, cord2, player)
         let column = ship[0][0]
         for(let i = 0; i < ship.length; i++)
         {
+            console.log(ship.length)
             player.board["grid"][column][ship[i][1]].filled = true;
         }
     }
@@ -147,6 +148,7 @@ function place_ship(cord1, cord2, player)
         let row = ship[0][1]
         for(let i = 0; i < ship.length; i++)
         {
+            console.log(ship.length)
             player.board["grid"][ship[i][0]][row].filled = true;
         }
     }

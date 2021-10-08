@@ -209,26 +209,6 @@ document.addEventListener("click", e => {
                                           shipplaced = false
                                           
                                     }
-                                    if(shipplaced == false) //was assigning shipplaced equal to false
-                                    {
-                                          try
-                                          {
-                                                
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player1_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr1_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                          }
-                                    }             
                                     ship_front_tail.pop()
                                     ship_front_tail.pop()
                                     if(shiplength<=gameLogic.numShips)
@@ -256,7 +236,7 @@ document.addEventListener("click", e => {
                         }
                               
                   }
-                  else if(gameLogic.player2Turn == true)
+                  else if(gameLogic.player2Turn == true && gameLogic.opponent == 1)
                   {
                         ship_front_tail.push([j,i])
                         if(number_of_plyr2_placed_ships == 0){
@@ -283,26 +263,6 @@ document.addEventListener("click", e => {
                                           shipplaced = false
                                           
                                     }
-                                    if(shipplaced = false)
-                                    {
-                                          try
-                                          {
-                                                
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player2)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player2_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr2_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                          }
-                                    }             
                                     ship_front_tail.pop()
                                     ship_front_tail.pop()
                                     if(shiplength<=gameLogic.numShips)
