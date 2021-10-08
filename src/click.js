@@ -123,9 +123,9 @@ document.addEventListener("click", e => {
       /** 
 
 
-            *  @pre 
+            *  @pre User clicks button for selecting opponent
             *  @param e from the click event and variables from game.js class
-            *  @post 
+            *  @post Sets gameLogic.opponent to appropriate value based on button clicked
       */
 
       else if (gameLogic.pickOpponent == true) {
@@ -151,9 +151,9 @@ document.addEventListener("click", e => {
 
       /** 
 
-            *  @pre 
+            *  @pre User clicks button for selecting game mode
             *  @param e from the click event and variables from game.js class
-            *  @post 
+            *  @post Sets gameLogic.gameMode to appropriate value based on button clicked
       */
 
       else if (gameLogic.pickGameMode == true) {
