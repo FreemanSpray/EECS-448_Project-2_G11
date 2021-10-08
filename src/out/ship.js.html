@@ -1,4 +1,32 @@
-class Ship {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ship.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ship.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>class Ship {
     constructor(locations){
         this.locations = locations
         this.sunk = false;
@@ -26,7 +54,7 @@ function sink_ships(player)
     let hit_cells = get_hit_cells(player)
     if(player == player1)
     {
-        for(let i = 0; i < number_of_plyr1_placed_ships; i++)
+        for(let i = 0; i &lt; number_of_plyr1_placed_ships; i++)
         {
             if(player1.board["grid"][all_player1_ships[i].locations[i][0]][all_player1_ships[i].locations[i][1]].hit == true)
             {
@@ -36,7 +64,7 @@ function sink_ships(player)
     }
     else if(player == player2)
     {
-        for(let i = 0; i < number_of_plyr2_placed_ships; i++)
+        for(let i = 0; i &lt; number_of_plyr2_placed_ships; i++)
         {
             if(player2.board["grid"][all_player2_ships[i].locations[i][0]][all_player2_ships[i].locations[i][1]].hit == true)
             {
@@ -54,9 +82,9 @@ function sink_ships(player)
 function get_ship_cells(player)
 {
     let cells =[]
-    for(let i = 0; i < 9; i++)
+    for(let i = 0; i &lt; 9; i++)
     {
-        for(let j = 0; j < 10; j++)
+        for(let j = 0; j &lt; 10; j++)
         {
             if(player.board["grid"][i][j].filled == true)
             {
@@ -75,9 +103,9 @@ function get_ship_cells(player)
 function get_hit_cells(player)
 {
     let cells =[]
-    for(let i = 0; i < 9; i++)
+    for(let i = 0; i &lt; 9; i++)
     {
-        for(let j = 0; j < 10; j++)
+        for(let j = 0; j &lt; 10; j++)
         {
             if(player.board["grid"][i][j].hit == true)
             {
@@ -96,9 +124,9 @@ function get_hit_cells(player)
 function get_miss_cells(player)
 {
     let cells =[]
-    for(let i = 0; i < 9; i++)
+    for(let i = 0; i &lt; 9; i++)
     {
-        for(let j = 0; j < 10; j++)
+        for(let j = 0; j &lt; 10; j++)
         {
             if(player.board["grid"][i][j].miss == true)
             {
@@ -136,7 +164,7 @@ function place_ship(cord1, cord2, player)
     else if(is_horizontal)
     {
         let column = ship[0][0]
-        for(let i = 0; i < ship.length; i++)
+        for(let i = 0; i &lt; ship.length; i++)
         {
             player.board["grid"][column][ship[i][1]].filled = true;
         }
@@ -145,7 +173,7 @@ function place_ship(cord1, cord2, player)
     else if(is_vertical)
     {
         let row = ship[0][1]
-        for(let i = 0; i < ship.length; i++)
+        for(let i = 0; i &lt; ship.length; i++)
         {
             player.board["grid"][ship[i][0]][row].filled = true;
         }
@@ -191,7 +219,7 @@ function verify_cordinates(ship_size, cord1, cord2, player)
         throw 'ship is size does not match covered cell lenghth'
     }
     //verify if ship size is with in the valid ship sizes
-    if(ship_size < 1 || ship_size > 6)
+    if(ship_size &lt; 1 || ship_size > 6)
     {
         throw 'ship is size is not valid';
     }
@@ -228,7 +256,7 @@ function verify_cordinates(ship_size, cord1, cord2, player)
         //verify if a ship is going to overlap with another
         let if_overlapping = ship_cells.some(([ship_row, ship_col]) => {
             return placement_cells.some(([placement_row, placement_col]) => {
-                return ship_row === placement_row && ship_col === placement_col
+                return ship_row === placement_row &amp;&amp; ship_col === placement_col
             })
         })
 
@@ -236,4 +264,26 @@ function verify_cordinates(ship_size, cord1, cord2, player)
         {
             throw 'ship would overlap with another'
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Oct 07 2021 20:01:26 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

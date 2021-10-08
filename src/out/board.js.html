@@ -1,4 +1,32 @@
-let canvas;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let canvas;
 let context;
 
 /** 
@@ -43,7 +71,7 @@ function drawTemplate(){
 
     //label columns for the boards
     let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-    for(let x=0; x<10;x++){
+    for(let x=0; x&lt;10;x++){
         context.font = "30px Verdana";
         context.fillStyle = "black";
         context.textAlign = "left";
@@ -52,7 +80,7 @@ function drawTemplate(){
     }
 
     //label rows for the boards
-    for(let x=1; x<=9; x++){
+    for(let x=1; x&lt;=9; x++){
         context.font = "30px Verdana";
         context.fillStyle = "black";
         context.textAlign = "left";
@@ -61,7 +89,7 @@ function drawTemplate(){
     }
 
     //draw the columns/rows in the boards
-    for (let x=0; x<9; x++){
+    for (let x=0; x&lt;9; x++){
         context.beginPath();
         context.lineWidth = 1;
         context.strokeStyle = "grey";
@@ -69,7 +97,7 @@ function drawTemplate(){
         context.lineTo(130+(55*x), 625);
         context.stroke();
     }
-    for (let x=0; x<9; x++){
+    for (let x=0; x&lt;9; x++){
         context.beginPath();
         context.lineWidth = 1;
         context.strokeStyle = "grey";
@@ -77,7 +105,7 @@ function drawTemplate(){
         context.lineTo(930+(55*x), 625);
         context.stroke();
     }
-    for(let x=0; x<8; x++){
+    for(let x=0; x&lt;8; x++){
         context.beginPath();
         context.lineWidth = 1;
         context.strokeStyle = "grey";
@@ -85,7 +113,7 @@ function drawTemplate(){
         context.lineTo(625, 136.1+(x*61.1));
         context.stroke();
     }
-    for(let x=0; x<8; x++){
+    for(let x=0; x&lt;8; x++){
         context.beginPath();
         context.lineWidth = 1;
         context.strokeStyle = "grey";
@@ -129,7 +157,7 @@ function drawStartUI(){
     context.fillText("Choose the number of ships to place", 750, 150, [220]);
 
     //draws the buttons for ship # selection
-    for(let x = 1; x<=6; x++){
+    for(let x = 1; x&lt;=6; x++){
         context.beginPath();
         context.lineWidth = 2;
         context.strokeStyle = "Grey";
@@ -238,7 +266,6 @@ function drawModeSelection() {
     context.fillText("Mirror Mode", 750, 175 + 50 * 2);
 }
 
-
 /** 
 * @pre none
 * @param none
@@ -315,9 +342,9 @@ function drawPlayersShipsDuringTurn(){
     let opponentsHitCells;
     let opponentsMissCells;
 
-    for(let y=0; y < 9; y++){
+    for(let y=0; y &lt; 9; y++){
         gamePiecePosistions[y] = new Array(10);
-        for(let x=0; x < 10; x++){
+        for(let x=0; x &lt; 10; x++){
             gamePiecePosistions[y][x] = [85.5 + y*61.1, 82.5 + x*55];
         }
     }
@@ -332,15 +359,15 @@ function drawPlayersShipsDuringTurn(){
         opponentsMissCells = get_miss_cells(player2);
     }
 
-    for(let y = 0; y < 9; y++){
-        for(let x =0; x < 10; x++){
-            for(let z =0; z < playerCells.length; z++){
+    for(let y = 0; y &lt; 9; y++){
+        for(let x =0; x &lt; 10; x++){
+            for(let z =0; z &lt; playerCells.length; z++){
                 if( equals(playerCells[z],[y,x]) ){
                     context.fillStyle = "black";
                     context.fillRect(gamePiecePosistions[y][x][1], gamePiecePosistions[y][x][0], 40, 40);
                 }
             }
-            for (let z = 0; z < opponentsMissCells.length; z++){
+            for (let z = 0; z &lt; opponentsMissCells.length; z++){
                 if(equals(opponentsMissCells[z], [y,x])){
                     context.beginPath();
                     context.lineWidth = 3;
@@ -349,7 +376,7 @@ function drawPlayersShipsDuringTurn(){
                     context.stroke();
                 }
             }
-            for (let z = 0; z < opponentsHitCells.length; z++){
+            for (let z = 0; z &lt; opponentsHitCells.length; z++){
                 if (equals(opponentsHitCells[z], [y,x])){
                     context.beginPath();
                     context.strokeStyle = "red";
@@ -379,9 +406,9 @@ function drawHitsAndMissesDuringTurn(){
     let hitCells;
     let missCells;
 
-    for(let y=0; y < 9; y++){
+    for(let y=0; y &lt; 9; y++){
         gamePiecePosistions[y] = new Array(10);
-        for(let x=0; x < 10; x++){
+        for(let x=0; x &lt; 10; x++){
             gamePiecePosistions[y][x] = [85.5 + y*61.1, 882.5 + x*55];
         }
     }
@@ -394,9 +421,9 @@ function drawHitsAndMissesDuringTurn(){
         missCells = get_miss_cells(player1);
     }
 
-    for(let y = 0; y < 9; y++){
-        for(let x =0; x < 10; x++){
-            for(let z =0; z < hitCells.length; z++){
+    for(let y = 0; y &lt; 9; y++){
+        for(let x =0; x &lt; 10; x++){
+            for(let z =0; z &lt; hitCells.length; z++){
                 if( equals(hitCells[z],[y,x]) ){
                     context.beginPath();
                     context.strokeStyle = "red";
@@ -412,7 +439,7 @@ function drawHitsAndMissesDuringTurn(){
                     context.stroke();
                 }
             }
-            for(let z =0; z < missCells.length; z++){
+            for(let z =0; z &lt; missCells.length; z++){
                 if( equals(missCells[z],[y,x]) ){
                     context.beginPath();
                     context.lineWidth = 3;
@@ -434,9 +461,9 @@ function drawShipConnections(){
     let gamePiecePosistions = new Array(9);
     let allPlayerShips;
     //gamepiecePosistions is an array of all the cell posistions
-    for(let y=0; y < 9; y++){
+    for(let y=0; y &lt; 9; y++){
         gamePiecePosistions[y] = new Array(10);
-        for(let x=0; x < 10; x++){
+        for(let x=0; x &lt; 10; x++){
             gamePiecePosistions[y][x] = [75 + y*61.1, 75 + x*55];
         }
     }
@@ -447,7 +474,7 @@ function drawShipConnections(){
         allPlayerShips = all_player2_ships;
     }
     //iterating through all of the players ships   
-    for(let i = 0; i < allPlayerShips.length; i++){
+    for(let i = 0; i &lt; allPlayerShips.length; i++){
         let currentShip = allPlayerShips[i];
         if (currentShip.locations.length != 1){
             if (currentShip.locations[0][0] == currentShip.locations[currentShip.locations.length-1][0]){
@@ -476,7 +503,7 @@ function drawShipConnections(){
 * @post Returns true if the arrays are equal
 */
 function equals(array1, array2){
-    for(let x=0; x<array1.length; x++){
+    for(let x=0; x&lt;array1.length; x++){
       if(array1[x] != array2[x]){
         return false;
       }
@@ -494,3 +521,26 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Oct 07 2021 20:01:26 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
