@@ -247,9 +247,9 @@ document.addEventListener("click", e => {
                         if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
                               
-                            boardfreezestate = 1;
-                            drawPlayersShipsDuringTurn();
-                            drawShipConnections();
+                              boardfreezestate = 1;
+                              drawPlayersShipsDuringTurn();
+                              drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = false;
                               gameLogic.player2Turn = false;        
@@ -320,9 +320,9 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr2_placed_ships == gameLogic.numShips)
                         {
-                            boardfreezestate = 1;
-                            drawPlayersShipsDuringTurn();
-                            drawShipConnections();
+                              boardfreezestate = 1;
+                              drawPlayersShipsDuringTurn();
+                              drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = true;
                               gameLogic.player2Turn = false;

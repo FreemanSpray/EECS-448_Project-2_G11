@@ -1,9 +1,3 @@
-class AI{
-    constructor(){
-        this.difficulty = 1;
-    }
-}
-
 let genFront = [];
 let genTail = [];
 let genFrontX;
@@ -42,25 +36,25 @@ function getRandomCoordinates(shipLength){
     return([genFront, genTail]);
 }
 
-//Flaws in implementation: 
-//placeAIShips will break the game if any AI ship is placed overlapping another AI ship. 
 function placeAIShips(){
     for(let i = 1; i <= gameLogic.numShips; i++){
         while(shipplaced == false){
             genCoordinates = getRandomCoordinates(i + 1);
             try
             {
-                  place_ship(genCoordinates[0], genCoordinates[1], player2)
-                  let ship = new Ship(get_all_ship_cells(genCoordinates[0], genCoordinates[1]))
-                  all_player2_ships.push(ship)
-                  shiplength=shiplength+1;
-                  number_of_plyr2_placed_ships += 1
-                  shipplaced = true
+                console.log("placing")
+                place_ship(genCoordinates[0], genCoordinates[1], player2)
+                let ship = new Ship(get_all_ship_cells(genCoordinates[0], genCoordinates[1]))
+                all_player2_ships.push(ship)
+                shiplength=shiplength+1;
+                number_of_plyr2_placed_ships += 1
+                shipplaced = true
                   
             } 
             catch(error)
             {
-                  shipplaced = false
+                console.log(error)
+                shipplaced = false
             }
         }
     }

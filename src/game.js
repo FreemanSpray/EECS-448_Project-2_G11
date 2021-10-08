@@ -42,6 +42,10 @@ function endTurnshipplacing(x,y){ //called twice
             }
             else {
                 placeAIShips();
+                boardfreezestate = 1;
+                drawDoneTurnButton();
+                gameLogic.player1Turn = true;
+                gameLogic.player2Turn = false;
                 gameLogic.placing = false;
                 transition(700, 330);
             }
