@@ -1,4 +1,5 @@
 
+
 //minor bug: clicking a tile after completing player 1 setup but before passing to player 2 gives an incorrect ship length message.
 
 /** 
@@ -110,17 +111,19 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
-                  alert("Place your length 1 ship on the left green grid")
                   gameLogic.pickNumShips = false;
                   gameLogic.placing = true;
-
+                  //gameLogic.pickOpponent = true;
                   
                  
             }
             
       }
 
+
       /** 
+
+
             *  @pre 
             *  @param e from the click event and variables from game.js class
             *  @post 
@@ -146,7 +149,9 @@ document.addEventListener("click", e => {
           }
       }
 
+
       /** 
+
             *  @pre 
             *  @param e from the click event and variables from game.js class
             *  @post 
@@ -343,7 +348,11 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         gameLogic.temp_player = 1;
                         fire_missile([b,a], player2)
-                        sink_ships(player2)
+			if (gameLogic.gameMode == 2){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				fire_missile([b,a], player1);
+                        }
+                  sink_ships(player1)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+			sink_ships(player2)
                         win_check()
                         gameLogic.startTurn = false;
                         boardfreezestate=1;
@@ -354,6 +363,10 @@ document.addEventListener("click", e => {
                   {
                         gameLogic.temp_player = 2;
                         fire_missile([b,a], player1)
+			if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				fire_missile([b,a], player2);
+			}
+                        sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
                         sink_ships(player1)
                         win_check()
                         boardfreezestate=1;

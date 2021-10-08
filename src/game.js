@@ -1,12 +1,16 @@
 class GameLogic{
     constructor(){
         this.pickNumShips = true;
+        this.pickOpponent = false;
+        this.opponent = 0;
+        this.pickGameMode = false;
+        this.gameMode = 0;
         this.placing = false;
         this.player1Turn = true;
         this.player2Turn = false;
         this.firing = false;
         this.numShips = 1;
-        this.startTurn = false
+        this.startTurn = false;
         this.temp_player = 1;
     }
 }
@@ -66,6 +70,7 @@ function transition(x,y){
  
     }
 }
+
 
 
  

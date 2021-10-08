@@ -238,6 +238,7 @@ function drawModeSelection() {
     context.fillText("Mirror Mode", 750, 175 + 50 * 2);
 }
 
+
 /** 
 * @pre none
 * @param none
