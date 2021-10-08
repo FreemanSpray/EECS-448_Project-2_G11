@@ -1,7 +1,7 @@
 let canvas;
 let context;
 
-/*
+/** 
 * @pre none
 * @param none
 * @post draws the base template for the game
@@ -95,7 +95,7 @@ function drawTemplate(){
     }
     
 }
-/*
+/** 
 * @pre none
 * @param x coordinate and y coordinate of the cell selected to fire at
 * @post draws a red box at the coordinates
@@ -105,7 +105,7 @@ function drawHitResult(x,y){
     context.fillStyle = "red";
     context.fillRect(y*54.9+883, x*61.1+85, 40,40);
 }
-/*
+/** 
 * @pre none
 * @param x coordinate and y coordinate of the cell selected to fire at
 * @post draws a blue box at the coordinates
@@ -115,7 +115,7 @@ function drawMissResult(x,y){
     context.fillRect(y*54.9+883, x*61.1+85, 40,40);
 }
 
-/*
+/** 
 * @pre none
 * @param none
 * @post draws the Start selection UI elements for the game
@@ -146,7 +146,99 @@ function drawStartUI(){
     }
 }
 
-/*
+
+
+/** 
+* @pre none
+* @param none
+* @post draws the opponent/ai selection UI elements
+*/
+function drawAiSelection() {
+    //draws sub header
+    context.font = "30px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = 'center';
+    context.fillText("Welcome to BattleShip!", 750, 100, [200]);
+    context.fillText("Choose your opponent", 750, 150, [220]);
+
+    //draws the buttons for opponent selection
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 1, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Human", 750, 175 + 50 * 1);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 2, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Easy AI", 750, 175 + 50 * 2);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 3, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Medium AI", 750, 175 + 50 * 3);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 4, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Hard AI", 750, 175 + 50 * 4);
+}
+
+/** 
+* @pre none
+* @param none
+* @post draws the game mode selection UI elements
+*/
+function drawModeSelection() {
+    //draws sub header
+    context.font = "30px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = 'center';
+    context.fillText("Welcome to BattleShip!", 750, 100, [200]);
+    context.fillText("Choose the game mode", 750, 150, [220]);
+
+    //draws the buttons for mode selection
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 1, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Normal", 750, 175 + 50 * 1);
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = "Grey";
+    context.rect(650, 150 + 50 * 2, 200, 40);
+    context.stroke();
+    context.font = "20px Times New Roman";
+    context.fillStyle = "Black";
+    context.textAlign = "center";
+    context.fillText("Mirror Mode", 750, 175 + 50 * 2);
+}
+
+/** 
 * @pre none
 * @param none
 * @post draws the text that will display while the players are placing their ships
@@ -159,7 +251,7 @@ function drawFireText(){
     context.fillText("your opponents Ships!", 750,150, [200]);
 }
 
-/*
+/** 
 * @pre none
 * @param none
 * @post draws the button that will indicate a given player is done with their turn
@@ -181,7 +273,7 @@ function drawDoneTurnButton(){
     
 }
 
-/*
+/** 
 * @pre none
 * @param none
 * @post draws the button that indicates a given player is about to start their turn
@@ -211,7 +303,7 @@ function drawStartTurnButton(){
     
 }
 
-/*
+/** 
 * @pre none
 * @param none
 * @post draws the ships of a given player when it is their turn
@@ -276,7 +368,7 @@ function drawPlayersShipsDuringTurn(){
     }       
 }
 
-/*
+/** 
 * @pre none
 * @param none
 * @post draws the hits and misses of a given player when it is their turn
@@ -332,7 +424,7 @@ function drawHitsAndMissesDuringTurn(){
     }       
 }
 
-/*
+/** 
 * @pre none
 * @param none
 * @post draws a line through the middle of a line of cells that make up a ship
@@ -377,7 +469,7 @@ function drawShipConnections(){
     }
 }
 
-/*
+/** 
 * @pre none
 * @param Any given 2 arrays
 * @post Returns true if the arrays are equal

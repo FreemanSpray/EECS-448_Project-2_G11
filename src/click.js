@@ -1,22 +1,25 @@
-/*/*
+
+//minor bug: clicking a tile after completing player 1 setup but before passing to player 2 gives an incorrect ship length message.
+
+/** 
 * @pre 
 * @param x represents x coordinate passed in from coordinate pair
 * @post Converts x coordinate of screen to x value of cell on green board.
 */
 function roundMegreenhorz(x){ return Math.floor(((x-85)/55))}
-/*
+/** 
 * @pre 
 * @param y represents y coordinate passed in from coordinate pair
 * @post Converts y coordinate of screen to y value of cell on green board.
 */
 function roundMegreenvert(y){return Math.floor(((y-85)/61.1))}
-/*
+/** 
 * @pre 
 * @param x represents x coordinate passed in from coordinate pair
 * @post Converts x coordinate of screen to x value of cell on red board.
 */
 function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
-/*
+/** 
 * @pre 
 * @param y represents y coordinate passed in from coordinate pair
 * @post Converts y coordinate of screen to y value of cell on red board.
@@ -24,7 +27,7 @@ function roundMeredhorz(x){ return Math.floor(((x-885)/55))}
 function roundMeredvert(y){return Math.floor(((y-85)/61.1))}
 
 
-/*
+/** 
 * @pre User clicks coordiantes for start point and end point for ship
 * @param [x,y] representing the first coord and [m,n] representing the second coordiante, distance is set to the appropiate distance corresponding to the ship length.
 * @post Returns true if endpoints match distance of ship false if otherwise
@@ -47,7 +50,7 @@ let shiplength=1;//keeps track of length of ship that user is placing
 let shipplaced=true;//keeps track of wether ship was placed succesfully
 let boardfreezestate=0; //freezes board when it equals 1 and player transtition is happening
 
-/*
+/** 
 * @pre User clicks screen to indicate wher ship should be placed
 * @param n which represents the length of the ship being placed, shipplaced which describes if the ship placement was successful
 * @post Alerts user to place certain ship and passes control to click event to verify if ship placement was successful.
@@ -59,7 +62,7 @@ function ship_placement_interface(n,shipplaced)
       
             
 }
-/*
+/** 
 * @pre User clicks on screen
 * @param e represents x,y coordiante pair for where user clicked on screen.
 * @post Performs variety of tasks depending on where user clicked 
@@ -71,7 +74,7 @@ document.addEventListener("click", e => {
       const [j] = [e.y].map(roundMegreenvert);
       const[a]=[e.x].map(roundMeredhorz);
       const[b]=[e.y].map(roundMeredvert); 
-      /*
+      /** 
             * @pre User clicks button for choosing number of ships
             * @param gameLogic.pickNumShips  determines what button was clicked
             * @post Sets gameLogic.numShips to appropiate value based on button clicked
@@ -116,8 +119,56 @@ document.addEventListener("click", e => {
             }
             
       }
+
+      /** 
+            *  @pre 
+            *  @param e from the click event and variables from game.js class
+            *  @post 
+      */
+
+      else if (gameLogic.pickOpponent == true) {
+          if (e.x >= 660 && e.x <= 860)//checks to see what button is clicked for opponent selection and sets opponent to appropiate value
+          {
+              if (e.y >= 210 && e.y <= 250) {
+                  gameLogic.opponent = 1;
+              }
+              else if (e.y >= 260 && e.y <= 300) {
+                  gameLogic.opponent = 2;
+              }
+              else if (e.y >= 310 && e.y <= 350) {
+                  gameLogic.opponent = 3;
+              }
+              else if (e.y >= 360 && e.y <= 400) {
+                  gameLogic.opponent = 4;
+              }
+              gameLogic.pickOpponent = false;
+              gameLogic.pickGameMode = true;
+          }
+      }
+
+      /** 
+            *  @pre 
+            *  @param e from the click event and variables from game.js class
+            *  @post 
+      */
+
+      else if (gameLogic.pickGameMode == true) {
+          if (e.x >= 660 && e.x <= 860)//checks to see what button is clicked for game mode selection and sets gameMode to appropiate value
+          {
+              if (e.y >= 210 && e.y <= 250) {
+                  gameLogic.gameMode = 1; //standard gamemode
+              }
+              else if (e.y >= 260 && e.y <= 300) {
+                  gameLogic.gameMode = 2; //mirrors shots across both boards (custom feature).
+              }
+              gameLogic.pickGameMode = false;
+              gameLogic.placing = true;
+          }
+      }
+
+
       //sequence of if statements to verify and execute ship placement on based on a variety of factors
-      /*
+      /** 
             * @pre User clicks points where they want ships to be placed
             *  @param e from the click event and variables from game.js class
             *  @post Places ships for both players
@@ -280,7 +331,7 @@ document.addEventListener("click", e => {
 
 
 
-    /*
+    /** 
             * @pre User clicks button for to fire at ships
             * @param gameLogic class and e from click event
             * @post Draws fire or miss result on both player boards

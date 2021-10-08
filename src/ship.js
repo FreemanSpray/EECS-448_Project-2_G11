@@ -16,7 +16,7 @@ let number_of_plyr2_placed_ships = 0
 //an array that holds the potential front and tail values of a ship
 let ship_front_tail = []
 
-/*
+/** 
 * @pre none
 * @param current player
 * @post will set a ships value in the all player ships array to sunk
@@ -46,7 +46,7 @@ function sink_ships(player)
     }
 
 }
-/*
+/** 
 * @pre none
 * @param current player
 * @post iterates through a players grid and finds what cells of a players grid are filled, retruns an array of all the filled values
@@ -67,7 +67,7 @@ function get_ship_cells(player)
     return cells
 }
 
-/*
+/** 
 * @pre none
 * @param current player
 * @post iterates through a players grid and finds what cells of a players grid are hit, retruns an array of all the hit values
@@ -88,7 +88,7 @@ function get_hit_cells(player)
     return cells
 }
 
-/*
+/** 
 * @pre none
 * @param current player
 * @post iterates through a players grid and finds what cells of a players grid are missed, retruns an array of all the missed values
@@ -109,7 +109,7 @@ function get_miss_cells(player)
     return cells
 }
 
-/*
+/** 
 * @pre none
 * @param front coordinate of ship, last coordinate of ship
 * @post constructs a new ship, updates the players grid to fill the cells the ship will take up
@@ -155,7 +155,7 @@ function place_ship(cord1, cord2, player)
         throw 'Ship can not be placed diagonally or in nonconnected cells'
     }
 }
-/*
+/** 
 * @pre none
 * @param front coordinate of ship, last coordinate of ship
 * @post returns an array that gives all coordinates covered by a ship
@@ -178,7 +178,7 @@ function get_all_ship_cells(cord1, cord2) {
         })
     }
 }
-/*
+/** 
 * @pre none
 * @param size of a potential ship, coordinate1/ front of ship, coordinite2 / tail of ship, and current player
 * @post verifies is a ships potential coorinites will work. (determines if a ship can be placed in cells). If problem is triggered, it throws errors
