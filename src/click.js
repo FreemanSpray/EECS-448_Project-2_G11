@@ -110,8 +110,7 @@ document.addEventListener("click", e => {
 
                   }
                   gameLogic.pickNumShips = false;
-                  gameLogic.placing = true;
-                  //gameLogic.pickOpponent = true;
+                  gameLogic.pickOpponent = true;
                   
                  
             }
@@ -161,6 +160,7 @@ document.addEventListener("click", e => {
               }
               gameLogic.pickGameMode = false;
               gameLogic.placing = true;
+              alert("Place your length 1 ship on the left green grid")
           }
       }
 
@@ -240,7 +240,9 @@ document.addEventListener("click", e => {
                         if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
                               
-                              boardfreezestate=1;
+                            boardfreezestate = 1;
+                            drawPlayersShipsDuringTurn();
+                            drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = false;
                               gameLogic.player2Turn = false;        
@@ -311,7 +313,9 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr2_placed_ships == gameLogic.numShips)
                         {
-                              boardfreezestate=1;
+                            boardfreezestate = 1;
+                            drawPlayersShipsDuringTurn();
+                            drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = true;
                               gameLogic.player2Turn = false;
@@ -379,6 +383,12 @@ document.addEventListener("click", e => {
       if(boardfreezestate==0)
       {
             drawTemplate();
+          if (gameLogic.pickOpponent == true) {
+              drawAiSelection();
+          }
+          else if (gameLogic.pickGameMode == true) {
+              drawModeSelection();
+          }
             drawPlayersShipsDuringTurn();
             drawHitsAndMissesDuringTurn(); 
             drawShipConnections();
