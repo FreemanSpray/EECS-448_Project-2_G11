@@ -1,6 +1,6 @@
 class Ship {
     constructor(locations){
-        this.locations = locations
+        this.locations = locations  //array of coordinate-pair arrays (every coordinate-pair covered by the ship)
         this.sunk = false;
         this.size = locations.length
     }
@@ -117,7 +117,7 @@ function get_miss_cells(player)
 */
 function place_ship(cord1, cord2, player)
 {
-    new Ship(get_all_ship_cells(cord1, cord2))
+    //new Ship(get_all_ship_cells(cord1, cord2))
     let ship = get_all_ship_cells(cord1, cord2)
     const [row_one, col_one] = cord1
     const [row_two, col_two] = cord2

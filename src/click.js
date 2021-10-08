@@ -178,13 +178,13 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         // peter place a ship on the specific players board after validating that the ship placement is valid
                         ship_front_tail.push([j,i])
-                        if(number_of_plyr1_placed_ships == 0){
+                        if(number_of_plyr1_placed_ships == 0){ //when placing size one ship, a single click is needed.
                               ship_front_tail.push([j,i])
                         }
-                        if(ship_front_tail.length == 2)
+                        if(ship_front_tail.length == 2) //runs when two clicks have been made.
                         {
-                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
-                              {
+                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true) //checks length, allows diagonals
+                              {                       //           xPos of click1       yPos of click1           xPos of click2        yPos of click2
                                     try
                                     {
                                           place_ship(ship_front_tail[0], ship_front_tail[1], player1)
@@ -202,7 +202,7 @@ document.addEventListener("click", e => {
                                           shipplaced = false
                                           
                                     }
-                                    if(shipplaced = false)
+                                    if(shipplaced == false) //was assigning shipplaced equal to false
                                     {
                                           try
                                           {
@@ -239,11 +239,15 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
-                              
-                              boardfreezestate=1;
-                              drawDoneTurnButton();
-                              gameLogic.player1Turn = false;
-                              gameLogic.player2Turn = false;        
+                              if(gameLogic.opponent != 0)
+                                    {}
+                              else
+                              {
+                                    boardfreezestate=1;
+                                    drawDoneTurnButton();
+                                    gameLogic.player1Turn = false;
+                                    gameLogic.player2Turn = false;
+                              }        
                         }
                               
                   }

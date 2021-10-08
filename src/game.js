@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 * @post Changes turns before player 1 and player 2 for placing ships.
 */
 
-function endTurnshipplacing(x,y){
+function endTurnshipplacing(x,y){ //called twice
     if (x>=650 && x<=850 && y >=300 && y <=340 ){
         if (gameLogic.player1Turn == false && gameLogic.player2Turn==false && gameLogic.placing==true){
             gameLogic.player2Turn = true;
@@ -37,7 +37,14 @@ function endTurnshipplacing(x,y){
         {
             drawTemplate();
             shiplength=1;
-            alert("Place your length 1 ship on the left green grid");
+            if (gameLogic.opponent == 1){
+                alert("Place your length 1 ship on the left green grid");
+            }
+            else {
+                placeAIShips();
+                gameLogic.placing = false;
+                transition(700, 330);
+            }
             boardfreezestate=0;
         }
  
