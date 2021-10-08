@@ -122,10 +122,9 @@ document.addEventListener("click", e => {
             }
             
       }
-<<<<<<< Updated upstream
+
       //sequence of if statements to verify and execute ship placement on based on a variety of factors
-      /*
-=======
+    
 
       /** 
             *  @pre 
@@ -177,7 +176,6 @@ document.addEventListener("click", e => {
       
       /**
             * //sequence of if statements to verify and execute ship placement on based on a variety of factors
->>>>>>> Stashed changes
             * @pre User clicks points where they want ships to be placed
             *  @param e from the click event and variables from game.js class
             *  @post Places ships for both players

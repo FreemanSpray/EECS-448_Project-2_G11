@@ -146,9 +146,7 @@ function drawStartUI(){
     }
 }
 
-<<<<<<< Updated upstream
-/*
-=======
+
 
 /** 
 * @pre none
