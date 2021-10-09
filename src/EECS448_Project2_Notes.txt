@@ -1,0 +1,34 @@
+    if(player == player1)
+    {
+        for(let ship = 0; ship < number_of_plyr1_placed_ships; ship++)
+        {
+            for(let shipCell = 0; shipCell < all_player1_ships[ship].size; shipCell++)
+            {
+                if(player.board["grid"][all_player1_ships[ship].locations[shipCell][0]][all_player1_ships[ship].locations[shipCell][1]].hit == true)
+                {
+                    all_player1_ships[ship].sunk = true
+                }
+            }
+        }
+    }
+    else if(player == player2)
+    {
+        for(let ship = 0; ship < number_of_plyr2_placed_ships; ship++)
+        {
+            for(let shipCell = 0; shipCell < all_player2_ships[ship].size; shipCell++)
+            {
+                if(player.board["grid"][all_player2_ships[ship].locations[shipCell][0]][all_player2_ships[ship].locations[shipCell][1]].hit == true)
+                {
+                    all_player2_ships[ship].sunk = true
+                }
+            }
+        }
+    }
+
+
+
+
+Known bugs: 
+
+1) AI Place ship occassionally throws type reference error. Unclear if this creates an issue with gameplay
+2) To sink a ship, only the front must be hit.

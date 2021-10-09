@@ -23,7 +23,6 @@ let ship_front_tail = []
 */
 function sink_ships(player)
 {
-    let hit_cells = get_hit_cells(player)
     if(player == player1)
     {
         for(let i = 0; i < number_of_plyr1_placed_ships; i++)
@@ -44,8 +43,8 @@ function sink_ships(player)
             }
         }
     }
-
 }
+
 /** 
 * @pre none
 * @param current player

@@ -66,7 +66,58 @@ function placeAIShips(){
     }
 }
 
-function AIFireShot(){
 
+let genX;
+let genY;
+let genShot = [];
+
+/** 
+* @pre none
+* @param none
+* @post returns a size 2 array containing a randomly generated y coordinate and x coordinate. For use by Easy AI.
+*/
+function easyShot(){
+    genX = Math.floor(Math.random()*(10))
+    genY = Math.floor(Math.random()*(9))
+    return([genY, genX]);
+}
+
+/** 
+* @pre none
+* @param none
+* @post returns a size 2 array containing a randomly generated y coordinate and x coordinate, except in the case when a ship has been hit, in which case it returns adjacent coordinates. For use by Medium AI. 
+*/
+function mediumShot(){
+
+}
+
+/** 
+* @pre none
+* @param none
+* @post returns a size 2 array containing a y and x coordinate where a filled cell is located. For use by Hard AI.
+*/
+function hardShot(){
+
+}
+
+function AIFireShot(){
+    if(gameLogic.opponent == 2){
+        genShot = easyShot();
+    }
+    else if(gameLogic.opponent == 3){
+        genShot = mediumShot();
+    }
+    else {
+        genShot = hardShot();
+    }
+    gameLogic.temp_player = 2;
+    fire_missile(genShot, player1)
+if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+  fire_missile(genShot, player2);
+}
+    sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+    sink_ships(player1)
+    win_check()
+    gameLogic.player2Turn = false;
 }
 

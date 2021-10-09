@@ -43,13 +43,11 @@ function endTurnshipplacing(x,y){ //called twice
             else {
                 placeAIShips();
                 boardfreezestate = 1;
-                drawDoneTurnButton();
                 gameLogic.player1Turn = true;
                 gameLogic.player2Turn = false;
                 gameLogic.placing = false;
-                transition(700, 330);
+                drawDoneTurnButton();
             }
-            boardfreezestate=0;
         }
  
         
@@ -98,8 +96,13 @@ function endTurngame(x,y, temp_player)
     {
         if (gameLogic.temp_player == 1 && gameLogic.startTurn == true){
             gameLogic.player1Turn=false;
-            gameLogic.player2Turn=true;
-            boardfreezestate = 0;
+            if(gameLogic.opponent == 1){
+                gameLogic.player2Turn=true;
+                boardfreezestate = 0;
+            }
+            else {
+                AIFireShot();
+            }
         }
         else if(gameLogic.temp_player == 2 && gameLogic.startTurn == true){
             gameLogic.player1Turn=true;

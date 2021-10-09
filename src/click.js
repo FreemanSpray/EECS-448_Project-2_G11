@@ -312,24 +312,24 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         gameLogic.temp_player = 1;
                         fire_missile([b,a], player2)
-			if (gameLogic.gameMode == 2){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
-				fire_missile([b,a], player1);
+			      if (gameLogic.gameMode == 2){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				      fire_missile([b,a], player1);
                         }
-                  sink_ships(player1)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
-			sink_ships(player2)
+                        sink_ships(player1)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+			      sink_ships(player2)
                         win_check()
                         gameLogic.startTurn = false;
                         boardfreezestate=1;
                         drawDoneTurnButton();
                         gameLogic.player1Turn = false;
                   }
-                  else if(gameLogic.player2Turn==true)
+                  else if(gameLogic.player2Turn==true && gameLogic.opponent == 1)
                   {
                         gameLogic.temp_player = 2;
                         fire_missile([b,a], player1)
-			if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
-				fire_missile([b,a], player2);
-			}
+			      if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				      fire_missile([b,a], player2);
+			      }
                         sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
                         sink_ships(player1)
                         win_check()
@@ -337,7 +337,7 @@ document.addEventListener("click", e => {
                         gameLogic.startTurn = false;
                         drawDoneTurnButton();
                         gameLogic.player2Turn = false;
-                  } 
+                  }
             }
             if(gameLogic.player1Turn==false && gameLogic.player2Turn==false){
                   endTurngame(e.x,e.y, gameLogic.temp_player);
