@@ -185,13 +185,13 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         // peter place a ship on the specific players board after validating that the ship placement is valid
                         ship_front_tail.push([j,i])
-                        if(number_of_plyr1_placed_ships == 0){
+                        if(number_of_plyr1_placed_ships == 0){ //when placing size one ship, a single click is needed.
                               ship_front_tail.push([j,i])
                         }
-                        if(ship_front_tail.length == 2)
+                        if(ship_front_tail.length == 2) //runs when two clicks have been made.
                         {
-                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
-                              {
+                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true) //checks length, allows diagonals
+                              {                       //           xPos of click1       yPos of click1           xPos of click2        yPos of click2
                                     try
                                     {
                                           place_ship(ship_front_tail[0], ship_front_tail[1], player1)
@@ -209,26 +209,6 @@ document.addEventListener("click", e => {
                                           shipplaced = false
                                           
                                     }
-                                    if(shipplaced = false)
-                                    {
-                                          try
-                                          {
-                                                
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player1_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr1_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                          }
-                                    }             
                                     ship_front_tail.pop()
                                     ship_front_tail.pop()
                                     if(shiplength<=gameLogic.numShips)
@@ -247,16 +227,16 @@ document.addEventListener("click", e => {
                         if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
                               
-                            boardfreezestate = 1;
-                            drawPlayersShipsDuringTurn();
-                            drawShipConnections();
+                              boardfreezestate = 1;
+                              drawPlayersShipsDuringTurn();
+                              drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = false;
                               gameLogic.player2Turn = false;        
                         }
                               
                   }
-                  else if(gameLogic.player2Turn == true)
+                  else if(gameLogic.player2Turn == true && gameLogic.opponent == 1)
                   {
                         ship_front_tail.push([j,i])
                         if(number_of_plyr2_placed_ships == 0){
@@ -283,26 +263,6 @@ document.addEventListener("click", e => {
                                           shipplaced = false
                                           
                                     }
-                                    if(shipplaced = false)
-                                    {
-                                          try
-                                          {
-                                                
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player2)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player2_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr2_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                          }
-                                    }             
                                     ship_front_tail.pop()
                                     ship_front_tail.pop()
                                     if(shiplength<=gameLogic.numShips)
@@ -320,9 +280,9 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr2_placed_ships == gameLogic.numShips)
                         {
-                            boardfreezestate = 1;
-                            drawPlayersShipsDuringTurn();
-                            drawShipConnections();
+                              boardfreezestate = 1;
+                              drawPlayersShipsDuringTurn();
+                              drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = true;
                               gameLogic.player2Turn = false;
@@ -352,24 +312,24 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         gameLogic.temp_player = 1;
                         fire_missile([b,a], player2)
-			if (gameLogic.gameMode == 2){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
-				fire_missile([b,a], player1);
+			      if (gameLogic.gameMode == 2){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				      fire_missile([b,a], player1);
                         }
-                  sink_ships(player1)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
-			sink_ships(player2)
+                        sink_ships(player1)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+			      sink_ships(player2)
                         win_check()
                         gameLogic.startTurn = false;
                         boardfreezestate=1;
                         drawDoneTurnButton();
                         gameLogic.player1Turn = false;
                   }
-                  else if(gameLogic.player2Turn==true)
+                  else if(gameLogic.player2Turn==true && gameLogic.opponent == 1)
                   {
                         gameLogic.temp_player = 2;
                         fire_missile([b,a], player1)
-			if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
-				fire_missile([b,a], player2);
-			}
+			      if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				      fire_missile([b,a], player2);
+			      }
                         sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
                         sink_ships(player1)
                         win_check()
@@ -377,7 +337,7 @@ document.addEventListener("click", e => {
                         gameLogic.startTurn = false;
                         drawDoneTurnButton();
                         gameLogic.player2Turn = false;
-                  } 
+                  }
             }
             if(gameLogic.player1Turn==false && gameLogic.player2Turn==false){
                   endTurngame(e.x,e.y, gameLogic.temp_player);
