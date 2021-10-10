@@ -88,7 +88,41 @@ function easyShot(){
 * @post returns a size 2 array containing a randomly generated y coordinate and x coordinate, except in the case when a ship has been hit, in which case it returns adjacent coordinates. For use by Medium AI. 
 */
 function mediumShot(){
+    let normShot = easyShot();
+    let foundShip = -1;
+    let activeShips = [];
+    let targets = [];
 
+    //remove all sunk ships from active list.
+    for(i = 0; i < all_player1_ships.length; i++)
+    {
+        if(all_player1_ships[i].sunk == false)
+        {
+            activeShips.push(all_player1_ships[i]);
+        }
+        else
+        {
+            activeShips.push();
+        }
+    }
+
+    //find any active ships, that have been hit
+    for(i = 0; i < activeShips.length; i++)
+    {
+        if((get_all_ship_cells(activeShips[i]).filter(x => get_hit_cells(player1).indexOf(x) !== -1)) != [])
+        {
+            foundShip = i;
+        }
+    }
+
+    //target the found ship, in a spot it has not yet been hit
+    if(foundShip != -1)
+    {
+        targets = get_all_ship_cells(activeShips[foundShip]).filter(x => get_hit_cells(player1).indexOf(x) == -1);
+        normShot = targets[0];
+    }
+
+    return normShot;
 }
 
 /** 
@@ -97,7 +131,12 @@ function mediumShot(){
 * @post returns a size 2 array containing a y and x coordinate where a filled cell is located. For use by Hard AI.
 */
 function hardShot(){
+    let cheatShot = get_ship_cells(player1);
+    cheatShot = cheatShot.filter(function(x){
+        return get_hit_cells(player1).indexOf(x) < 0;
+    })
 
+    return cheatShot[0];
 }
 
 function AIFireShot(){
