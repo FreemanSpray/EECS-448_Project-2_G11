@@ -16,6 +16,8 @@ let number_of_plyr2_placed_ships = 0
 //an array that holds the potential front and tail values of a ship
 let ship_front_tail = []
 
+let sinkCatcher
+
 /** 
 * @pre none
 * @param current player
@@ -25,21 +27,37 @@ function sink_ships(player)
 {
     if(player == player1)
     {
-        for(let i = 0; i < number_of_plyr1_placed_ships; i++)
+        for(let ship = 0; ship < number_of_plyr1_placed_ships; ship++)
         {
-            if(player1.board["grid"][all_player1_ships[i].locations[i][0]][all_player1_ships[i].locations[i][1]].hit == true)
+            sinkCatcher = 0 //initialize incremental hit checker to 0 after each ship
+            for(let shipCell = 0; shipCell < all_player1_ships[ship].size; shipCell++)
             {
-                    all_player1_ships[i].sunk = true
+                if(player.board["grid"][all_player1_ships[ship].locations[shipCell][0]][all_player1_ships[ship].locations[shipCell][1]].hit == true)
+                {
+                    sinkCatcher++ //increment hit checker for every hit cell on a ship
+                }
+            }
+            if(sinkCatcher == all_player1_ships[ship].size)
+            {
+                all_player1_ships[ship].sunk = true //if sinkCatcher matches the size of the ship, sink the ship
             }
         }
     }
     else if(player == player2)
     {
-        for(let i = 0; i < number_of_plyr2_placed_ships; i++)
+        for(let ship = 0; ship < number_of_plyr2_placed_ships; ship++)
         {
-            if(player2.board["grid"][all_player2_ships[i].locations[i][0]][all_player2_ships[i].locations[i][1]].hit == true)
+            sinkCatcher = 0 //initialize incremental hit checker to 0 after each ship
+            for(let shipCell = 0; shipCell < all_player2_ships[ship].size; shipCell++)
             {
-                    all_player2_ships[i].sunk = true 
+                if(player.board["grid"][all_player2_ships[ship].locations[shipCell][0]][all_player2_ships[ship].locations[shipCell][1]].hit == true)
+                {
+                    sinkCatcher++ //increment hit checker for every hit cell on a ship
+                }
+            }
+            if(sinkCatcher == all_player2_ships[ship].size)
+            {
+                all_player2_ships[ship].sunk = true //if sinkCatcher matches the size of the ship, sink the ship 
             }
         }
     }

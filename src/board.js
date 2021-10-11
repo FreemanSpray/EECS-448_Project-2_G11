@@ -495,6 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } 
     drawTemplate();
     drawStartUI();
+    boardfreezestate = 1;
   })
 
 

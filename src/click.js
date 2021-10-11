@@ -111,6 +111,7 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
+                  boardfreezestate = 0;
                   gameLogic.pickNumShips = false;
                   gameLogic.pickOpponent = true;
                   
