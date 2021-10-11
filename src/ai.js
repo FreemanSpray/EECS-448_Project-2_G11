@@ -7,6 +7,11 @@ let genTailY;
 let genOrientation;
 let genCoordinates = [];
 
+/** 
+* @pre none
+* @param shipLength, the length of the ship that will have random coordinates generated for it.
+* @post returns a size 2 array containing a pair of size 2 arrays. The first contains the x and y coordinates for the front of the ship, the second the x and y coordinates for the tail.
+*/
 function getRandomCoordinates(shipLength){
     genFrontX = Math.floor(Math.random()*(10)); //ranges between 0 and 9
     genFrontY = Math.floor(Math.random()*(9)); //ranges between 0 and 8
@@ -36,6 +41,11 @@ function getRandomCoordinates(shipLength){
     return([genFront, genTail]);
 }
 
+/** 
+* @pre an AI needs to have been selected as the opponent.
+* @param none
+* @post places ships randomly for player 2 (representing the AI).
+*/
 function placeAIShips(){
     for(let i = 1; i <= gameLogic.numShips; i++){
         let shipplaced = false;
@@ -140,6 +150,11 @@ function hardShot(){
     return cheatShot[0];
 }
 
+/** 
+* @pre none
+* @param none
+* @post calls a different coordinate-generating function depending on the difficulty of the AI opponent, then fires a shot at the coordinates and makes the appropriate checks associated with firing.
+*/
 function AIFireShot(){
     if(gameLogic.opponent == 2){
         genShot = easyShot();
@@ -155,7 +170,7 @@ function AIFireShot(){
     if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
         fire_missile(genShot, player2);
     }
-    sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+    sink_ships(player2)  //sinking both players' ships (regardless of mode, no ship will change to sunk status when this is called if it has not been hit)
     sink_ships(player1)
     win_check()
     gameLogic.player2Turn = false;
