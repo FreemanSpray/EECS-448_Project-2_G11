@@ -128,13 +128,14 @@ function mediumShot(){
 /** 
 * @pre none
 * @param none
-* @post returns a size 2 array containing a y and x coordinate where a filled cell is located. For use by Hard AI.
+* @post returns a size 2 array containing a y and x coordinate where a filled cell that hasn't been hit is located. For use by Hard AI.
 */
 function hardShot(){
-    let cheatShot = get_ship_cells(player1);
-    cheatShot = cheatShot.filter(function(x){
-        return get_hit_cells(player1).indexOf(x) < 0;
-    })
+    let cheatShot = get_ship_cells(player1); //Locations of all filled cells
+    
+    while (player1.board["grid"][cheatShot[0][0]][cheatShot[0][1]].hit == true) { //filters out cells that have been hit
+        cheatShot.splice(0,1);
+    }
 
     return cheatShot[0];
 }
@@ -151,9 +152,9 @@ function AIFireShot(){
     }
     gameLogic.temp_player = 2;
     fire_missile(genShot, player1)
-if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
-  fire_missile(genShot, player2);
-}
+    if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+        fire_missile(genShot, player2);
+    }
     sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
     sink_ships(player1)
     win_check()
