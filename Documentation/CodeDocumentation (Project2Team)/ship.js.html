@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>class Ship {
     constructor(locations){
-        this.locations = locations
+        this.locations = locations  //array of coordinate-pair arrays (every coordinate-pair covered by the ship)
         this.sunk = false;
         this.size = locations.length
     }
@@ -51,7 +51,6 @@ let ship_front_tail = []
 */
 function sink_ships(player)
 {
-    let hit_cells = get_hit_cells(player)
     if(player == player1)
     {
         for(let i = 0; i &lt; number_of_plyr1_placed_ships; i++)
@@ -72,8 +71,8 @@ function sink_ships(player)
             }
         }
     }
-
 }
+
 /** 
 * @pre none
 * @param current player
@@ -145,7 +144,7 @@ function get_miss_cells(player)
 */
 function place_ship(cord1, cord2, player)
 {
-    new Ship(get_all_ship_cells(cord1, cord2))
+    //new Ship(get_all_ship_cells(cord1, cord2))
     let ship = get_all_ship_cells(cord1, cord2)
     const [row_one, col_one] = cord1
     const [row_two, col_two] = cord2
@@ -166,6 +165,7 @@ function place_ship(cord1, cord2, player)
         let column = ship[0][0]
         for(let i = 0; i &lt; ship.length; i++)
         {
+            console.log(ship.length)
             player.board["grid"][column][ship[i][1]].filled = true;
         }
     }
@@ -175,6 +175,7 @@ function place_ship(cord1, cord2, player)
         let row = ship[0][1]
         for(let i = 0; i &lt; ship.length; i++)
         {
+            console.log(ship.length)
             player.board["grid"][ship[i][0]][row].filled = true;
         }
     }
@@ -274,13 +275,13 @@ function verify_cordinates(ship_size, cord1, cord2, player)
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#easyShot">easyShot</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#hardShot">hardShot</a></li><li><a href="global.html#mediumShot">mediumShot</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Oct 07 2021 20:01:26 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 10 2021 23:44:19 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -27,6 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>
+
 //minor bug: clicking a tile after completing player 1 setup but before passing to player 2 gives an incorrect ship length message.
 
 /** 
@@ -138,20 +139,22 @@ document.addEventListener("click", e => {
                         gameLogic.numShips=6;
 
                   }
-                  alert("Place your length 1 ship on the left green grid")
+                  boardfreezestate = 0;
                   gameLogic.pickNumShips = false;
-                  gameLogic.placing = true;
-
+                  gameLogic.pickOpponent = true;
                   
                  
             }
             
       }
 
+
       /** 
-            *  @pre 
+
+
+            *  @pre User clicks button for selecting opponent
             *  @param e from the click event and variables from game.js class
-            *  @post 
+            *  @post Sets gameLogic.opponent to appropriate value based on button clicked
       */
 
       else if (gameLogic.pickOpponent == true) {
@@ -174,10 +177,12 @@ document.addEventListener("click", e => {
           }
       }
 
+
       /** 
-            *  @pre 
+
+            *  @pre User clicks button for selecting game mode
             *  @param e from the click event and variables from game.js class
-            *  @post 
+            *  @post Sets gameLogic.gameMode to appropriate value based on button clicked
       */
 
       else if (gameLogic.pickGameMode == true) {
@@ -191,6 +196,7 @@ document.addEventListener("click", e => {
               }
               gameLogic.pickGameMode = false;
               gameLogic.placing = true;
+              alert("Place your length 1 ship on the left green grid")
           }
       }
 
@@ -208,13 +214,13 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         // peter place a ship on the specific players board after validating that the ship placement is valid
                         ship_front_tail.push([j,i])
-                        if(number_of_plyr1_placed_ships == 0){
+                        if(number_of_plyr1_placed_ships == 0){ //when placing size one ship, a single click is needed.
                               ship_front_tail.push([j,i])
                         }
-                        if(ship_front_tail.length == 2)
+                        if(ship_front_tail.length == 2) //runs when two clicks have been made.
                         {
-                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true)
-                              {
+                              if(user_length_ship([ship_front_tail[0][0],ship_front_tail[0][1]],[ship_front_tail[1][0],ship_front_tail[1][1]],shiplength-1)==true) //checks length, allows diagonals
+                              {                       //           xPos of click1       yPos of click1           xPos of click2        yPos of click2
                                     try
                                     {
                                           place_ship(ship_front_tail[0], ship_front_tail[1], player1)
@@ -232,26 +238,6 @@ document.addEventListener("click", e => {
                                           shipplaced = false
                                           
                                     }
-                                    if(shipplaced = false)
-                                    {
-                                          try
-                                          {
-                                                
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player1)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player1_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr1_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                          }
-                                    }             
                                     ship_front_tail.pop()
                                     ship_front_tail.pop()
                                     if(shiplength&lt;=gameLogic.numShips)
@@ -270,14 +256,16 @@ document.addEventListener("click", e => {
                         if(number_of_plyr1_placed_ships == gameLogic.numShips)
                         {
                               
-                              boardfreezestate=1;
+                              boardfreezestate = 1;
+                              drawPlayersShipsDuringTurn();
+                              drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = false;
                               gameLogic.player2Turn = false;        
                         }
                               
                   }
-                  else if(gameLogic.player2Turn == true)
+                  else if(gameLogic.player2Turn == true &amp;&amp; gameLogic.opponent == 1)
                   {
                         ship_front_tail.push([j,i])
                         if(number_of_plyr2_placed_ships == 0){
@@ -304,26 +292,6 @@ document.addEventListener("click", e => {
                                           shipplaced = false
                                           
                                     }
-                                    if(shipplaced = false)
-                                    {
-                                          try
-                                          {
-                                                
-                                                place_ship(ship_front_tail[0], ship_front_tail[1], player2)
-                                                let ship = new Ship(get_all_ship_cells(ship_front_tail[0], ship_front_tail[1]))
-                                                all_player2_ships.push(ship)
-                                                shiplength=shiplength+1;
-                                                number_of_plyr2_placed_ships += 1
-                                                shipplaced = true
-                                                
-                                          } 
-                                          catch(error)
-                                          {
-                                                console.log(error)
-                                                alert(error)
-                                                shipplaced = false
-                                          }
-                                    }             
                                     ship_front_tail.pop()
                                     ship_front_tail.pop()
                                     if(shiplength&lt;=gameLogic.numShips)
@@ -341,7 +309,9 @@ document.addEventListener("click", e => {
                         }
                         if(number_of_plyr2_placed_ships == gameLogic.numShips)
                         {
-                              boardfreezestate=1;
+                              boardfreezestate = 1;
+                              drawPlayersShipsDuringTurn();
+                              drawShipConnections();
                               drawDoneTurnButton();
                               gameLogic.player1Turn = true;
                               gameLogic.player2Turn = false;
@@ -371,24 +341,32 @@ document.addEventListener("click", e => {
                   if (gameLogic.player1Turn == true){
                         gameLogic.temp_player = 1;
                         fire_missile([b,a], player2)
-                        sink_ships(player2)
+			      if (gameLogic.gameMode == 2){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				      fire_missile([b,a], player1);
+                        }
+                        sink_ships(player1)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+			      sink_ships(player2)
                         win_check()
                         gameLogic.startTurn = false;
                         boardfreezestate=1;
                         drawDoneTurnButton();
                         gameLogic.player1Turn = false;
                   }
-                  else if(gameLogic.player2Turn==true)
+                  else if(gameLogic.player2Turn==true &amp;&amp; gameLogic.opponent == 1)
                   {
                         gameLogic.temp_player = 2;
                         fire_missile([b,a], player1)
+			      if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
+				      fire_missile([b,a], player2);
+			      }
+                        sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
                         sink_ships(player1)
                         win_check()
                         boardfreezestate=1;
                         gameLogic.startTurn = false;
                         drawDoneTurnButton();
                         gameLogic.player2Turn = false;
-                  } 
+                  }
             }
             if(gameLogic.player1Turn==false &amp;&amp; gameLogic.player2Turn==false){
                   endTurngame(e.x,e.y, gameLogic.temp_player);
@@ -401,6 +379,12 @@ document.addEventListener("click", e => {
       if(boardfreezestate==0)
       {
             drawTemplate();
+          if (gameLogic.pickOpponent == true) {
+              drawAiSelection();
+          }
+          else if (gameLogic.pickGameMode == true) {
+              drawModeSelection();
+          }
             drawPlayersShipsDuringTurn();
             drawHitsAndMissesDuringTurn(); 
             drawShipConnections();
@@ -432,13 +416,13 @@ document.addEventListener("click", e => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#easyShot">easyShot</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#hardShot">hardShot</a></li><li><a href="global.html#mediumShot">mediumShot</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Oct 07 2021 20:01:26 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 10 2021 23:44:19 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

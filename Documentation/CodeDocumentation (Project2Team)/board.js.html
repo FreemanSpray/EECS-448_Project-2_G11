@@ -266,6 +266,7 @@ function drawModeSelection() {
     context.fillText("Mirror Mode", 750, 175 + 50 * 2);
 }
 
+
 /** 
 * @pre none
 * @param none
@@ -295,7 +296,8 @@ function drawDoneTurnButton(){
     context.textAlign = "center";
     if (gameLogic.player1Turn == true){
         context.fillText("Player 1 Turn Done", 750, 325);
-    } else {
+    }
+    else {
         context.fillText("Player 2 Turn Done", 750, 325);
     }
     
@@ -325,7 +327,10 @@ function drawStartTurnButton(){
     else if(gameLogic.temp_player != 1){
         context.fillText("Player 1 Start Turn", 750, 325);
     }
-    else{
+    else if (gameLogic.opponent != 1){
+        context.fillText("Pass to AI", 750, 325);
+    }
+    else {
         context.fillText("Player 2 Start Turn", 750, 325);
     }
     
@@ -518,6 +523,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } 
     drawTemplate();
     drawStartUI();
+    boardfreezestate = 1;
   })
 
 
@@ -531,13 +537,13 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#drawAiSelection">drawAiSelection</a></li><li><a href="global.html#drawDoneTurnButton">drawDoneTurnButton</a></li><li><a href="global.html#drawFireText">drawFireText</a></li><li><a href="global.html#drawHitResult">drawHitResult</a></li><li><a href="global.html#drawHitsAndMissesDuringTurn">drawHitsAndMissesDuringTurn</a></li><li><a href="global.html#drawMissResult">drawMissResult</a></li><li><a href="global.html#drawModeSelection">drawModeSelection</a></li><li><a href="global.html#drawPlayersShipsDuringTurn">drawPlayersShipsDuringTurn</a></li><li><a href="global.html#drawShipConnections">drawShipConnections</a></li><li><a href="global.html#drawStartTurnButton">drawStartTurnButton</a></li><li><a href="global.html#drawStartUI">drawStartUI</a></li><li><a href="global.html#drawTemplate">drawTemplate</a></li><li><a href="global.html#easyShot">easyShot</a></li><li><a href="global.html#endTurngame">endTurngame</a></li><li><a href="global.html#endTurnshipplacing">endTurnshipplacing</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#fire_missile">fire_missile</a></li><li><a href="global.html#get_all_ship_cells">get_all_ship_cells</a></li><li><a href="global.html#get_hit_cells">get_hit_cells</a></li><li><a href="global.html#get_miss_cells">get_miss_cells</a></li><li><a href="global.html#get_ship_cells">get_ship_cells</a></li><li><a href="global.html#hardShot">hardShot</a></li><li><a href="global.html#mediumShot">mediumShot</a></li><li><a href="global.html#place_ship">place_ship</a></li><li><a href="global.html#roundMegreenhorz">roundMegreenhorz</a></li><li><a href="global.html#roundMegreenvert">roundMegreenvert</a></li><li><a href="global.html#roundMeredhorz">roundMeredhorz</a></li><li><a href="global.html#roundMeredvert">roundMeredvert</a></li><li><a href="global.html#ship_placement_interface">ship_placement_interface</a></li><li><a href="global.html#sink_ships">sink_ships</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#user_length_ship">user_length_ship</a></li><li><a href="global.html#verify_cordinates">verify_cordinates</a></li><li><a href="global.html#win_check">win_check</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Oct 07 2021 20:01:26 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 10 2021 23:44:19 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
