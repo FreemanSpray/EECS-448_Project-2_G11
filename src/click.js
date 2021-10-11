@@ -316,7 +316,7 @@ document.addEventListener("click", e => {
 			      if (gameLogic.gameMode == 2){			//mirror functionality - a shot on player 2 is mirrored on player 1's board.
 				      fire_missile([b,a], player1);
                         }
-                        sink_ships(player1)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+                        sink_ships(player1) //sinking both players' ships (regardless of mode, no ship will change to sunk status when this is called if it has not been hit)
 			      sink_ships(player2)
                         win_check()
                         gameLogic.startTurn = false;
@@ -331,7 +331,7 @@ document.addEventListener("click", e => {
 			      if (gameLogic.gameMode == 2){   		//mirror functionality - a shot on player 2 is mirrored on player 1's board.
 				      fire_missile([b,a], player2);
 			      }
-                        sink_ships(player2)  //sinking both players' ships (regardless of mode, nothing will sink when a player isn't fired upon during a round)
+                        sink_ships(player2) //sinking both players' ships (regardless of mode, no ship will change to sunk status when this is called if it has not been hit)
                         sink_ships(player1)
                         win_check()
                         boardfreezestate=1;
