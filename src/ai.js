@@ -102,7 +102,7 @@ function mediumShot(){
         }
         else
         {
-            activeShips.push();
+            activeShips.push([-i, -1]);
         }
     }
 
